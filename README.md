@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kasa — Front-end
 
-## Getting Started
+Front-end de l'application **Kasa**, une plateforme de location de logements entre particuliers. Ce projet est développé avec **Next.js** et **React**, et utilise **Storybook** pour le développement et la documentation des composants.
 
-First, run the development server:
+## Description du projet
+
+Kasa est une application web de réservation de logements. Le front-end consomme une API REST (back-end fourni séparément) pour afficher les logements, leurs détails, et gérer les favoris.
+
+## Prérequis
+
+- **Node.js** 18+ (recommandé)
+- **npm**
+- Le **back-end** Kasa doit tourner sur `http://localhost:3000` (voir le dossier `back-end/`)
+
+## Installation
+
+```bash
+npm install
+```
+
+## Lancement du projet
+
+### Serveur de développement (Next.js)
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ouvrez [http://localhost:3001](http://localhost:3001) (ou le port configuré) pour voir l'application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Storybook (développement des composants)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run storybook
+```
 
-## Learn More
+Ouvrez [http://localhost:6006](http://localhost:6006) pour explorer les composants.
 
-To learn more about Next.js, take a look at the following resources:
+### Build de production
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run build
+npm start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Structure du projet
 
-## Deploy on Vercel
+```
+src/
+├── app/          # Pages (App Router de Next.js)
+├── components/   # Composants React (avec stories Storybook)
+└── mocks/        # Données mockées (MSW) pour le développement sans back-end
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Documentation des composants
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Les composants sont documentés avec **Storybook** et des fichiers `*.contrat.md` qui décrivent le contrat (props, comportement) de chaque composant.
