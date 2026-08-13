@@ -29,3 +29,11 @@ export const Secondary: Story = {
         variant: "secondary",
     },
 };
+
+export const Disabled: Story = {
+    args: {
+        children: "Réserver",
+        variant: "primary",
+        disabled: true,
+    },
+};
