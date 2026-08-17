@@ -19,9 +19,10 @@ Il est réutilisable pour :
 
 ## Comportement
 - Rend un élément `<a>` via `next/link` (navigation sans rechargement)
-- La variante `default` applique la couleur noire
-- La variante `primary` applique la couleur rouge (utilisée pour "Ajouter un logement")
+- La variante `default` applique la couleur noire (`text-noir`)
+- La variante `primary` applique la couleur rouge (`text-mainRed`, utilisée pour "Ajouter un logement")
 - Le `children` étant flexible, il peut contenir du texte **ou** une icône
+- Les couleurs utilisent les **tokens de la palette Kasa** définis dans [`globals.css`](../../../app/globals.css:1)
 
 ## Utilisation
 - Barre de navigation (NavBar)

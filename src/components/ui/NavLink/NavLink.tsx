@@ -15,8 +15,8 @@ export interface NavLinkProps {
 }
 
 const variantClasses: Record<"default" | "primary", string> = {
-    default: "text-black",
-    primary: "text-[#FF6060]",
+    default: "text-noir",
+    primary: "text-mainRed",
 };
 
 /**

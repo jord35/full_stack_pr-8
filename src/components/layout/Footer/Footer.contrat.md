@@ -20,6 +20,11 @@ Il contient :
 - On n'utilise pas le composant `Logo` (qui fait un switch responsive) car le footer veut un logo fixe
 - Le layout est identique sur toutes les tailles d'écran (pas de breakpoint spécifique)
 
+## Couleurs
+- La bordure supérieure utilise `border-grisLight`
+- Le texte de copyright utilise `text-grisDark`
+- Les couleurs utilisent les **tokens de la palette Kasa** définis dans [`globals.css`](../../../app/globals.css:1)
+
 ## Évolution possible
 - Ajouter un lien sur le logo pour retourner à l'accueil (à faire de façon atomique sur le composant `Logo` si demandé)
 

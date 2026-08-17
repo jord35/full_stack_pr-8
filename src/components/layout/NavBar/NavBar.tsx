@@ -17,7 +17,7 @@ export function NavBar() {
     const closeMenu = () => setIsOpen(false);
 
     return (
-        <header className="w-full border-b border-gray-200">
+        <header className="w-full border-b border-grisLight">
             <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
                 {/* Espace réservé à gauche en mobile pour équilibrer le burger */}
                 <div className="xl:hidden" />
@@ -72,9 +72,9 @@ export function NavBar() {
                     onClick={() => setIsOpen(!isOpen)}
                     className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 xl:hidden"
                 >
-                    <span className="block h-0.5 w-6 bg-black" />
-                    <span className="block h-0.5 w-6 bg-black" />
-                    <span className="block h-0.5 w-6 bg-black" />
+                    <span className="block h-0.5 w-6 bg-noir" />
+                    <span className="block h-0.5 w-6 bg-noir" />
+                    <span className="block h-0.5 w-6 bg-noir" />
                 </button>
             </nav>
 

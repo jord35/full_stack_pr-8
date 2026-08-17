@@ -8,7 +8,7 @@ import Image from "next/image";
  */
 export function Footer() {
     return (
-        <footer className="w-full border-t border-gray-200">
+        <footer className="w-full border-t border-grisLight">
             <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-6">
                 <Image
                     src="/logo/Logo-s.svg"
@@ -16,7 +16,7 @@ export function Footer() {
                     width={47}
                     height={54}
                 />
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-grisDark">
                     © 2025 Kasa. All rights reserved
                 </p>
             </div>

@@ -36,6 +36,11 @@ Il contient :
 - Utilise `useState` pour gérer l'ouverture/fermeture du menu mobile (`isOpen`)
 - C'est un composant **client** (directive `"use client"`)
 
+## Couleurs
+- La bordure inférieure utilise `border-grisLight`
+- Les traits du burger menu utilisent `bg-noir`
+- Les couleurs utilisent les **tokens de la palette Kasa** définis dans [`globals.css`](../../../app/globals.css:1)
+
 ## Accessibilité
 - Le bouton burger a un attribut `aria-label` descriptif
 - Le menu mobile est navigable au clavier
