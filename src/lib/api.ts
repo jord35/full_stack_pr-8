@@ -1,4 +1,4 @@
-import type { Property } from "./types";
+import type { AuthResponse, Property } from "./types";
 
 /**
  * Module API — Toutes les fonctions d'appel au backend Kasa.
@@ -33,4 +33,26 @@ export async function getProperties(): Promise<Property[]> {
 export async function getProperty(id: string): Promise<Property> {
     const res = await fetch(`${API_URL}/api/properties/${id}`);
     return handleResponse<Property>(res);
+}
+
+// ─── Auth ────────────────────────────────────────────────
+
+/** Connexion : POST /auth/login */
+export async function login(email: string, password: string): Promise<AuthResponse> {
+    const res = await fetch(`${API_URL}/auth/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+    });
+    return handleResponse<AuthResponse>(res);
+}
+
+/** Inscription : POST /auth/register */
+export async function register(name: string, email: string, password: string): Promise<AuthResponse> {
+    const res = await fetch(`${API_URL}/auth/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, password }),
+    });
+    return handleResponse<AuthResponse>(res);
 }

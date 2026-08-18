@@ -22,3 +22,18 @@ export interface Property {
     equipments?: string[];
     tags?: string[];
 }
+
+/** Utilisateur de l'application Kasa */
+export interface User {
+    id: number;
+    name: string;
+    email: string;
+    picture: string | null;
+    role: string;
+}
+
+/** Réponse d'authentification (login/register) */
+export interface AuthResponse {
+    token: string;
+    user: User;
+}
