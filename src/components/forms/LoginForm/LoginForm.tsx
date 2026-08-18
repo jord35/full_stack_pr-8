@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Header } from "@/components/ui/Header/Header";
 import { Button } from "@/components/ui/Button/Button";
 import { NavLink } from "@/components/ui/NavLink/NavLink";
 
@@ -38,13 +37,6 @@ export function LoginForm({
 
     return (
         <form onSubmit={handleSubmit} className="font-inter">
-            <Header
-                title="Heureux de vous revoir"
-                description="Connectez-vous pour retrouver vos réservations, vos annonces et tout ce qui rend vos séjours uniques."
-                sizeMobile="md"
-                sizeDesktop="lg"
-            />
-
             <div className="mt-6 flex flex-col items-center gap-4">
                 <div className="flex flex-col items-start">
                     <label htmlFor="email" className="text-sm font-medium text-noir">

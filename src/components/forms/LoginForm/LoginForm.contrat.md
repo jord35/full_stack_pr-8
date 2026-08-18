@@ -5,11 +5,7 @@ Formulaire de connexion des utilisateurs existants. C'est un composant **formula
 
 Il réutilise le composant [`Button`](../../ui/Button/Button.tsx:1) pour l'action de soumission.
 
-En haut du formulaire, il affiche le composant [`Header`](../../ui/Header/Header.contrat.md:1) qui contient le titre et la description.
-
-### Textes du Header (login)
-- **Titre** : "Heureux de vous revoir"
-- **Description** : "Connectez-vous pour retrouver vos réservations, vos annonces et tout ce qui rend vos séjours uniques."
+Le composant [`Header`](../../ui/Header/Header.contrat.md:1) (titre + description) est affiché **par la page** au-dessus du formulaire, pas par le formulaire lui-même.
 
 ## Props
 

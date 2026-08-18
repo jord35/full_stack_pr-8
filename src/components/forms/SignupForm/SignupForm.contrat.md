@@ -5,11 +5,7 @@ Formulaire d'inscription des nouveaux utilisateurs. C'est un composant **formula
 
 Il réutilise le composant [`Button`](../../ui/Button/Button.tsx:1) pour l'action de soumission.
 
-En haut du formulaire, il affiche le composant [`Header`](../../ui/Header/Header.contrat.md:1) qui contient le titre et la description.
-
-### Textes du Header (signup)
-- **Titre** : "Rejoignez la communauté Kasa"
-- **Description** : "Créez votre compte et commencez à voyager autrement : réservez des logements uniques, découvrez de nouvelles destinations et partagez vos propres lieux avec d'autres voyageurs."
+Le composant [`Header`](../../ui/Header/Header.contrat.md:1) (titre + description) est affiché **par la page** au-dessus du formulaire, pas par le formulaire lui-même.
 
 ## Props
 

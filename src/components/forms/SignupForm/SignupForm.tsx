@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Header } from "@/components/ui/Header/Header";
 import { Button } from "@/components/ui/Button/Button";
 import { NavLink } from "@/components/ui/NavLink/NavLink";
 
@@ -44,13 +43,6 @@ export function SignupForm({
 
     return (
         <form onSubmit={handleSubmit} className="font-inter">
-            <Header
-                title="Rejoignez la communauté Kasa"
-                description="Créez votre compte et commencez à voyager autrement : réservez des logements uniques, découvrez de nouvelles destinations et partagez vos propres lieux avec d'autres voyageurs."
-                sizeMobile="md"
-                sizeDesktop="lg"
-            />
-
             <div className="mt-6 flex flex-col items-center gap-4">
                 <div className="flex flex-col items-start">
                     <label htmlFor="firstName" className="text-sm font-medium text-noir">
