@@ -46,7 +46,7 @@ export function NavBar() {
                     >
                         Ajouter un logement
                     </NavLink>
-                    <NavLink href="/favoris" aria-label="Voir les favoris">
+                    <NavLink href="/favorites" aria-label="Voir les favoris">
                         <Image
                             src="/icone/favori.svg"
                             alt="Favoris"
@@ -94,7 +94,7 @@ export function NavBar() {
                     >
                         Ajouter un logement
                     </NavLink>
-                    <NavLink href="/favoris" onClick={closeMenu}>
+                    <NavLink href="/favorites" onClick={closeMenu}>
                         Favoris
                     </NavLink>
                     <NavLink href="/messages" onClick={closeMenu}>
