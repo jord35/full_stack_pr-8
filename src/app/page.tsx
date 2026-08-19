@@ -1,28 +1,37 @@
 import { getProperties } from "@/lib/api";
+import { ContentImage } from "@/components/ui/ContentImage/ContentImage";
+import { Header } from "@/components/ui/Header/Header";
+import { PropertyGrid } from "@/components/features/PropertyGrid/PropertyGrid";
 
 export default async function Home() {
   const properties = await getProperties();
 
   return (
-    <main className="flex min-h-screen flex-col items-center p-8">
-      <h1 className="text-4xl font-bold">Kasa</h1>
-      <p className="mt-2 text-gray-600">
-        {properties.length} logements disponibles
-      </p>
-      <ul className="mt-8 w-full max-w-2xl space-y-4">
-        {properties.map((property) => (
-          <li
-            key={property.id}
-            className="rounded-lg border border-gray-200 p-4"
-          >
-            <h2 className="text-lg font-semibold">{property.title}</h2>
-            <p className="text-sm text-gray-600">{property.location}</p>
-            <p className="text-sm font-medium text-red-500">
-              {property.price_per_night} € / nuit
-            </p>
-          </li>
-        ))}
-      </ul>
+    <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-8">
+      {/* Header de la page d'accueil */}
+      <section>
+        <Header
+          title="Chez vous, partout et ailleurs"
+          description="Avec Kasa, vivez des séjours uniques dans des hébergements chaleureux, sélectionnés avec soin par nos hôtes."
+          sizeMobile="md"
+          sizeDesktop="lg"
+        />
+      </section>
+
+      {/* Bandeau d'accueil */}
+      <section className="relative mt-10 h-56 w-full overflow-hidden rounded-lg xl:h-72">
+        <ContentImage
+          src="/images/mocks/home_img.png"
+          alt="Bienvenue chez Kasa, la location d'appartements entre particuliers"
+          fill
+          className="object-cover"
+        />
+      </section>
+
+      {/* Grille des logements */}
+      <section className="mt-10">
+        <PropertyGrid properties={properties} />
+      </section>
     </main>
   );
 }
