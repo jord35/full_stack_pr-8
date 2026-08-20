@@ -11,6 +11,7 @@ export function Button({
     children,
     variant = "primary",
     className = "",
+    disabled = false,
     ...props
 }: ButtonProps) {
     const baseClasses =
@@ -19,9 +20,16 @@ export function Button({
         variant === "primary"
             ? "bg-mainRed text-white hover:bg-darkOrange focus:ring-mainRed"
             : "bg-grisLight text-noir hover:bg-grisLight focus:ring-grisDark";
+    // État désactivé : opacité réduite + curseur interdit pour indiquer visuellement
+    // que le bouton n'est pas fonctionnel. Géré ici (dans le composant), pas dans les formulaires.
+    const disabledClasses = "disabled:cursor-not-allowed disabled:opacity-50";
 
     return (
-        <button className={`${baseClasses} ${variantClasses} ${className}`} {...props}>
+        <button
+            className={`${baseClasses} ${variantClasses} ${disabledClasses} ${className}`}
+            disabled={disabled}
+            {...props}
+        >
             {children}
         </button>
     );

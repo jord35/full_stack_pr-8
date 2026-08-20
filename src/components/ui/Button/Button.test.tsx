@@ -12,13 +12,13 @@ describe("Button", () => {
     it("applique la classe de la variante primary par défaut", () => {
         render(<Button>Réserver</Button>);
         const button = screen.getByRole("button", { name: "Réserver" });
-        expect(button).toHaveClass("bg-red-500");
+        expect(button).toHaveClass("bg-mainRed");
     });
 
     it("applique la classe de la variante secondary", () => {
         render(<Button variant="secondary">Voir le logement</Button>);
         const button = screen.getByRole("button", { name: "Voir le logement" });
-        expect(button).toHaveClass("bg-gray-200");
+        expect(button).toHaveClass("bg-grisLight");
     });
 
     it("déclenche onClick au clic", async () => {
@@ -32,5 +32,12 @@ describe("Button", () => {
     it("est désactivé quand la prop disabled est passée", () => {
         render(<Button disabled>Réserver</Button>);
         expect(screen.getByRole("button", { name: "Réserver" })).toBeDisabled();
+    });
+
+    it("applique le style visuel désactivé (opacité réduite + curseur interdit)", () => {
+        render(<Button disabled>Réserver</Button>);
+        const button = screen.getByRole("button", { name: "Réserver" });
+        expect(button).toHaveClass("disabled:opacity-50");
+        expect(button).toHaveClass("disabled:cursor-not-allowed");
     });
 });
