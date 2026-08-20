@@ -9,6 +9,14 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // Proxy : redirige les appels API vers le back-end (port 3000).
+  // Le navigateur ne parle qu'au serveur Next (même origine), donc pas de problème CORS.
+  async rewrites() {
+    return [
+      { source: "/api/:path*", destination: "http://localhost:3000/api/:path*" },
+      { source: "/auth/:path*", destination: "http://localhost:3000/auth/:path*" },
+    ];
+  },
 };
 
 export default nextConfig;

@@ -3,10 +3,14 @@ import type { AuthResponse, Property } from "./types";
 /**
  * Module API — Toutes les fonctions d'appel au backend Kasa.
  *
- * Base URL : NEXT_PUBLIC_API_URL (défaut: http://localhost:3000)
+ * Détection du contexte d'exécution :
+ * - Côté serveur (Server Component) : URL absolue, car Node.js a besoin d'une adresse
+ *   complète pour faire le fetch (une URL relative provoquerait "Invalid URL").
+ * - Côté client (navigateur) : URL relative, pour passer par le proxy Next.js
+ *   (voir next.config.ts) qui redirige /api et /auth vers le back-end (port 3000),
+ *   ce qui évite les problèmes CORS.
  */
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+const API_URL = typeof window === "undefined" ? "http://localhost:3000" : "";
 
 // ─── Helpers ─────────────────────────────────────────────
 
