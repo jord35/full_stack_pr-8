@@ -20,10 +20,10 @@ export function PropertyCard({ property }: PropertyCardProps) {
     return (
         <Link
             href={`/logements/${property.slug}`}
-            className="group relative block overflow-hidden rounded-lg bg-white shadow-sm ring-1 ring-grisLight transition-shadow hover:shadow-md"
+            className="group relative flex h-[552px] flex-col overflow-hidden rounded-lg bg-white shadow-sm ring-1 ring-grisLight transition-shadow hover:shadow-md"
         >
             {/* Image de couverture */}
-            <div className="relative h-48 w-full overflow-hidden">
+            <div className="relative h-[376px] w-full overflow-hidden">
                 <ContentImage
                     src={property.cover}
                     alt={property.title}
@@ -39,13 +39,16 @@ export function PropertyCard({ property }: PropertyCardProps) {
             </div>
 
             {/* Informations */}
-            <div className="p-4">
-                <h2 className="font-inter text-lg font-bold text-noir">
-                    {property.title}
-                </h2>
-                <p className="mt-1 text-sm text-grisDark">{property.location}</p>
-                <p className="mt-2 font-inter text-base font-medium text-mainRed">
-                    {property.price_per_night} € / nuit
+            <div className="flex flex-1 flex-col p-6">
+                <div>
+                    <h2 className="font-inter text-lg font-bold text-noir">
+                        {property.title}
+                    </h2>
+                    <p className="mt-1 text-sm text-grisDark">{property.location}</p>
+                </div>
+                <p className="mt-auto font-inter text-base font-medium">
+                    <span className="text-noir">{property.price_per_night} €</span>
+                    <span className="text-grisDark"> par nuit</span>
                 </p>
             </div>
         </Link>
