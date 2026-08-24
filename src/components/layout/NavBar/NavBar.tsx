@@ -48,7 +48,7 @@ export function NavBar() {
                     </NavLink>
                     <NavLink href="/favorites" aria-label="Voir les favoris">
                         <Image
-                            src="/icone/favori.svg"
+                            src="/icone/hart-main_red.svg"
                             alt="Favoris"
                             width={22}
                             height={20}

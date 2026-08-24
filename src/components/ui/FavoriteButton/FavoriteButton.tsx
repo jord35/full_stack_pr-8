@@ -82,14 +82,14 @@ export function FavoriteButton({ propertyId, className = "" }: FavoriteButtonPro
             onClick={handleClick}
             aria-label={isFavorite ? "Retirer des favoris" : "Ajouter aux favoris"}
             aria-pressed={isFavorite}
-            className={`flex h-10 w-10 items-center justify-center rounded-full transition-colors ${isFavorite ? "bg-mainRed" : "bg-white/80"
+            className={`flex h-8 w-8 items-center justify-center rounded-[5px] transition-colors ${isFavorite ? "bg-mainRed" : "bg-white/80"
                 } ${className}`}
         >
             <Image
-                src="/icone/favori.svg"
+                src="/icone/hart-dark_grey.svg"
                 alt=""
-                width={20}
-                height={18}
+                width={16}
+                height={16}
                 className={isFavorite ? "brightness-0 invert" : ""}
             />
         </button>
