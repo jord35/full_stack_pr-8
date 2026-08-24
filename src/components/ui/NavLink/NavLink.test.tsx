@@ -17,7 +17,7 @@ describe("NavLink", () => {
     it("applique la variante default (texte noir) par défaut", () => {
         render(<NavLink href="/">Accueil</NavLink>);
         const link = screen.getByRole("link", { name: "Accueil" });
-        expect(link.className).toContain("text-black");
+        expect(link.className).toContain("text-noir");
     });
 
     it("applique la variante primary (texte rouge)", () => {
@@ -27,7 +27,7 @@ describe("NavLink", () => {
             </NavLink>
         );
         const link = screen.getByRole("link", { name: "Ajouter un logement" });
-        expect(link.className).toContain("text-[#FF6060]");
+        expect(link.className).toContain("text-mainRed");
     });
 
     it("ajoute les classes CSS additionnelles via className", () => {

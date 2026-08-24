@@ -11,6 +11,11 @@ export default defineConfig({
       '@': path.resolve(dirname, './src'),
     },
   },
+  // JSX transform automatique de React 19 : évite "React is not defined"
+  // dans les tests sans avoir besoin d'importer React dans chaque fichier.
+  esbuild: {
+    jsx: 'automatic',
+  },
   test: {
     environment: 'jsdom',
     include: ['src/**/*.test.{ts,tsx}'],
