@@ -2,6 +2,7 @@ import { getProperties } from "@/lib/api";
 import { ContentImage } from "@/components/ui/ContentImage/ContentImage";
 import { Header } from "@/components/ui/Header/Header";
 import { PropertyGrid } from "@/components/features/PropertyGrid/PropertyGrid";
+import { InfoCard } from "@/components/ui/InfoCard/InfoCard";
 
 export default async function Home() {
   const properties = await getProperties();
@@ -19,16 +20,43 @@ export default async function Home() {
       {/* Contenu principal : bandeau d'accueil + grille des logements */}
       <section>
         <h2 className="sr-only">Découvrez nos hébergements</h2>
-        <div className="relative mt-10 h-56 w-full overflow-hidden rounded-lg xl:h-72">
+        <div className="relative mt-10 h-[458px] w-full overflow-hidden rounded-lg">
           <ContentImage
             src="/images/mocks/home_img.png"
             alt="Bienvenue chez Kasa, la location d'appartements entre particuliers"
             fill
-            className="object-cover"
+            className="origin-center scale-160 object-cover xl:scale-100"
           />
         </div>
         <div className="mt-5">
           <PropertyGrid properties={properties} />
+        </div>
+      </section>
+
+      {/* Section "Comment ça marche" */}
+      <section className="mt-16 text-center">
+        <h2 className="font-inter text-2xl font-bold text-noir">
+          Comment ça marche ?
+        </h2>
+        <p className="mx-auto mt-2 max-w-2xl font-inter text-sm font-normal text-grisDark">
+          Que vous partiez pour un week-end improvisé, des vacances en famille ou
+          un voyage professionnel, Kasa vous aide à trouver un lieu qui vous
+          ressemble.
+        </p>
+
+        <div className="mt-8 flex flex-col items-center gap-6 xl:flex-row xl:flex-wrap xl:justify-center">
+          <InfoCard
+            title="Recherchez"
+            description="Entrez votre destination, vos dates et laissez Kasa faire le reste"
+          />
+          <InfoCard
+            title="Réservez"
+            description="Profitez d'une plateforme sécurisée et de profils d'hôtes vérifiés."
+          />
+          <InfoCard
+            title="Vivez l'expérience"
+            description="Installez-vous, profitez de votre séjour, et sentez-vous chez vous, partout."
+          />
         </div>
       </section>
     </main>
