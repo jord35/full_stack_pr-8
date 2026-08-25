@@ -10,15 +10,11 @@ Bouton **cœur** permettant d'ajouter/retirer un logement dans les **favoris** d
 | `propertyId` | `string` | ✅ | L'identifiant du logement à mettre en favori |
 
 ## Comportement au clic
-
-### Cas 1 : utilisateur **connecté**
 - Ajoute le logement dans les **favoris** (stockés dans `localStorage`).
 - Si le logement est **déjà** en favori → on le **retire** (toggle).
 - Le bouton change d'apparence selon l'état.
 
-### Cas 2 : utilisateur **non connecté**
-- **Redirige** vers la page `/login`.
-- N'ajoute rien aux favoris.
+> **Note** : le bouton ne dépend **pas** de l'authentification. Les favoris sont stockés localement dans le navigateur (`localStorage`), conformément au brief (étape 6). Il n'y a donc pas de redirection vers `/login` : le bouton gère uniquement le `localStorage`.
 
 ## États visuels
 
@@ -30,7 +26,6 @@ Bouton **cœur** permettant d'ajouter/retirer un logement dans les **favoris** d
 > Au clic, quand le logement devient favori, le bouton passe en **fond rouge**.
 
 ## Dépendances
-- **Authentification** : utilise le contexte d'auth (`AuthContext`) pour savoir si l'utilisateur est connecté.
 - **Favoris** : utilise `localStorage` pour persister les choix (cohérent avec le brief, étape 6).
 - **Icône** : utilise l'icône cœur existante [`favori.svg`](../../../../public/icone/favori.svg:1).
 

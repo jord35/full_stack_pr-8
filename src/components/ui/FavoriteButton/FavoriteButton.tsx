@@ -2,8 +2,6 @@
 
 import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { useAuth } from "@/lib/auth/AuthContext";
 
 export interface FavoriteButtonProps {
     /** Identifiant du logement à mettre en favori */
@@ -35,14 +33,13 @@ function readFavorites(): string[] {
  * Bouton cœur permettant d'ajouter/retirer un logement dans les favoris.
  *
  * Comportement :
- * - Utilisateur connecté : toggle du favori dans localStorage.
- * - Utilisateur non connecté : redirection vers /login.
+ * - Toggle du favori dans localStorage (ajout / retrait).
+ * - Ne dépend pas de l'authentification : les favoris sont stockés
+ *   localement dans le navigateur (localStorage), conformément au brief.
  *
  * État visuel : fond rouge (bg-mainRed) quand le logement est en favori.
  */
 export function FavoriteButton({ propertyId, className = "" }: FavoriteButtonProps) {
-    const { isAuthenticated } = useAuth();
-    const router = useRouter();
     const [isFavorite, setIsFavorite] = useState(false);
 
     // Au montage, on vérifie si le logement est déjà en favori
@@ -57,13 +54,7 @@ export function FavoriteButton({ propertyId, className = "" }: FavoriteButtonPro
             e.stopPropagation();
             e.preventDefault();
 
-            // Non connecté → redirection vers login
-            if (!isAuthenticated) {
-                router.push("/login");
-                return;
-            }
-
-            // Connecté → toggle du favori
+            // Toggle du favori dans localStorage
             const favorites = readFavorites();
             const alreadyFavorite = favorites.includes(propertyId);
             const next = alreadyFavorite
@@ -73,7 +64,7 @@ export function FavoriteButton({ propertyId, className = "" }: FavoriteButtonPro
             localStorage.setItem(FAVORITES_KEY, JSON.stringify(next));
             setIsFavorite(!alreadyFavorite);
         },
-        [isAuthenticated, propertyId, router]
+        [propertyId]
     );
 
     return (
