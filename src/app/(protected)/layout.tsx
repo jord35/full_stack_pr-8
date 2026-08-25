@@ -3,14 +3,15 @@
 import { useAuth } from "@/lib/auth/AuthContext";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { NavBar } from "@/components/layout/NavBar/NavBar";
-import { Footer } from "@/components/layout/Footer/Footer";
 
 /**
  * Layout de protection des routes authentifiées.
  * Vérifie que l'utilisateur est connecté avant d'afficher la page.
  * - Si non connecté : redirige vers /login
- * - Si connecté : affiche la page avec NavBar + Footer
+ * - Si connecté : affiche la page
+ *
+ * Note : la NavBar et le Footer sont rendus par le layout racine (app/layout.tsx),
+ * ce layout ne gère que la protection d'accès.
  */
 export default function ProtectedLayout({
     children,
@@ -42,9 +43,7 @@ export default function ProtectedLayout({
 
     return (
         <div className="flex min-h-screen flex-col">
-            <NavBar />
             <main className="flex flex-1 flex-col">{children}</main>
-            <Footer />
         </div>
     );
 }
