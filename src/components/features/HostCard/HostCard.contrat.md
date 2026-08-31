@@ -1,7 +1,7 @@
 # Contrat du composant HostCard
 
 ## Rôle
-Carte "haute" affichée sur la **page Détail Logement**, au-dessus du titre de l'annonce. Elle présente **l'hôte** du logement et propose de le **contacter**.
+Carte "hôte" affichée sur la **page Détail Logement**. Elle présente **l'hôte** du logement et propose de le **contacter**.
 
 C'est un composant **feature** : il est spécifique à la page Détail Logement et orchestre plusieurs éléments (image, avatar, note, boutons).
 
@@ -13,28 +13,34 @@ C'est un composant **feature** : il est spécifique à la page Détail Logement 
 
 Le composant reçoit **un objet `Property`** complet et en extrait ce qu'il affiche.
 
-## Contenu affiché
+## Structure
 
-La carte affiche **2 zones** :
+### 1. Titre
+- **"Votre hôte"** en haut de la carte.
 
-### 1. Zone hôte (en haut)
+### 2. Zone hôte
 | Élément | Source | Exemple |
 |---------|--------|---------|
-| **Image** du logement | `property.cover` | photo de couverture |
 | **Avatar** de l'hôte | `property.host.picture` | photo de profil |
 | **Nom** de l'hôte | `property.host.name` | "Nathalie Jean" |
-| **Note** (étoiles) | `property.rating_avg` | 5 |
+| **StarCount** (note) | `property.rating_avg` | 5 |
+
+- L'**avatar** et le **nom** sont affichés côte à côte.
+- Le composant **StarCount** (cube dark-grey avec étoile + note en chiffres) est affiché à côté du nom.
 
 > ℹ️ **Note** : on affiche `rating_avg` **tel que le renvoie le back-end** (c'est une moyenne, ex: `5`, `3`). On ne transforme pas la donnée.
 
-### 2. Zone boutons (en bas)
-Deux boutons **"Contacter l'hôte"** côte à côte :
-- Les **deux** boutons redirigent vers la **page Messages** (`/messages`).
-- C'est un **MVP** : on ne différencie pas encore les deux boutons (même action).
+### 3. Zone boutons (en bas)
+Deux boutons côte à côte :
+- **"Contacter l'hôte"** (variante `primary`)
+- **"Envoyer un message"** (variante `secondary`)
+
+Les **deux** boutons redirigent vers la page **Messages** (`/messages`).
 
 ## Navigation
 
 - Le clic sur un bouton redirige vers la **page Messages** : `/messages`.
+- La page Messages est protégée : si l'utilisateur n'est **pas connecté**, le layout le redirige vers **login**.
 - Utilise le composant [`Button`](../../ui/Button/Button.tsx:10) (variantes `primary` / `secondary`).
 
 ## Composant client
@@ -43,13 +49,14 @@ Deux boutons **"Contacter l'hôte"** côte à côte :
 
 ## Composants utilisés
 
-- [`Button`](../../ui/Button/Button.tsx:10) : les 2 boutons "Contacter l'hôte".
-- [`ContentImage`](../../ui/ContentImage/ContentImage.tsx:26) : image de couverture + avatar.
+- [`Button`](../../ui/Button/Button.tsx:10) : les 2 boutons "Contacter l'hôte" et "Envoyer un message".
+- [`ContentImage`](../../ui/ContentImage/ContentImage.tsx:26) : l'avatar de l'hôte.
+- [`StarCount`](../../ui/StarCount/StarCount.contrat.md:1) : la note de l'hôte (cube dark-grey + étoile + chiffre).
 
 ## Accessibilité
 
-- L'image et l'avatar doivent avoir un **`alt`** descriptif (ex: nom de l'hôte pour l'avatar).
-- Les boutons doivent avoir un **texte visible** ("Contacter l'hôte").
+- L'avatar doit avoir un **`alt`** descriptif (ex: nom de l'hôte).
+- Les boutons doivent avoir un **texte visible** ("Contacter l'hôte", "Envoyer un message").
 
 ## Utilisation
 

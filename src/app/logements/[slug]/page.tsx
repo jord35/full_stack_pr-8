@@ -1,7 +1,9 @@
 import { notFound } from "next/navigation";
 import { getProperties, getProperty } from "@/lib/api";
 import { Carousel } from "@/components/features/Carousel/Carousel";
+import { HostCard } from "@/components/features/HostCard/HostCard";
 import { BackButton } from "@/components/ui/BackButton/BackButton";
+import { TagList } from "@/components/ui/TagList/TagList";
 
 
 export default async function PropertyDetailPage({
@@ -48,19 +50,21 @@ export default async function PropertyDetailPage({
             )}
 
             {/* ─── Carte hôte (HostCard) ─────────────────────── */}
-            {/* TODO : composant HostCard (composant client).
-                Affiche : image, avatar hôte, nom, note (rating_avg)
-                + 2 boutons "Contacter l'hôte" → page /messages.
+            {/* HostCard : affiche l'avatar, le nom, la note (StarCount)
+                + 2 boutons "Contacter l'hôte" et "Envoyer un message" → /messages.
                 Voir contrat : components/features/HostCard/HostCard.contrat.md */}
+            <HostCard property={property} />
 
             {/* ─── Titre, lieu et description ────────────────── */}
             {/* TODO : afficher property.title, property.location, property.description */}
 
             {/* ─── Liste des équipements ─────────────────────── */}
-            {/* TODO : afficher property.equipments (tableau de chaînes) */}
+            {/* TagList : affiche les équipements du logement en grille de tags. */}
+            <TagList title="Équipements" items={property.equipments ?? []} />
 
             {/* ─── Liste des catégories (tags) ───────────────── */}
-            {/* TODO : afficher property.tags (tableau de chaînes) */}
+            {/* TagList : affiche les catégories du logement en grille de tags. */}
+            <TagList title="Catégories" items={property.tags ?? []} />
         </main>
     );
 }
