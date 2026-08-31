@@ -90,9 +90,9 @@ export function CarouselMobile({ pictures }: CarouselMobileProps) {
                             onClick={() => handleSelect(index)}
                             aria-label={`Voir la photo ${index + 1}`}
                             aria-pressed={index === selectedIndex}
-                            className={`relative h-20 w-28 flex-shrink-0 overflow-hidden rounded-md transition-opacity ${index === selectedIndex
-                                    ? "ring-2 ring-mainRed"
-                                    : "opacity-70 hover:opacity-100"
+                            className={`relative h-20 w-[83.5px] flex-shrink-0 overflow-hidden rounded-md transition-opacity ${index === selectedIndex
+                                ? "ring-2 ring-mainRed"
+                                : "opacity-70 hover:opacity-100"
                                 }`}
                         >
                             <ContentImage

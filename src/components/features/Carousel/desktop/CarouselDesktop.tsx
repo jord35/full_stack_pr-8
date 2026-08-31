@@ -81,7 +81,7 @@ export function CarouselDesktop({ pictures }: CarouselDesktopProps) {
 
                 {/* Miniatures (à droite, seulement si plus d'une image) */}
                 {hasThumbnails && (
-                    <div className="flex w-[200px] flex-col gap-3">
+                    <div className="grid w-[320px] grid-cols-2 gap-2.5">
                         {pageThumbs.map((src, index) => {
                             const realIndex = pageIndex * THUMBS_PER_PAGE + index;
                             return (
@@ -91,7 +91,7 @@ export function CarouselDesktop({ pictures }: CarouselDesktopProps) {
                                     onClick={() => handleSelect(realIndex)}
                                     aria-label={`Voir la photo ${realIndex + 1}`}
                                     aria-pressed={realIndex === selectedIndex}
-                                    className={`relative h-[94px] w-full overflow-hidden rounded-md transition-opacity ${realIndex === selectedIndex
+                                    className={`relative aspect-[148.5/174] w-full overflow-hidden rounded-md transition-opacity ${realIndex === selectedIndex
                                         ? "ring-2 ring-mainRed"
                                         : "opacity-70 hover:opacity-100"
                                         }`}
@@ -101,7 +101,7 @@ export function CarouselDesktop({ pictures }: CarouselDesktopProps) {
                                         alt={`Miniature ${realIndex + 1}`}
                                         fill
                                         className="object-cover"
-                                        sizes="200px"
+                                        sizes="160px"
                                     />
                                 </button>
                             );
