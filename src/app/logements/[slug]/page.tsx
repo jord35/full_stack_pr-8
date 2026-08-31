@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { getProperties, getProperty } from "@/lib/api";
 import { Carousel } from "@/components/features/Carousel/Carousel";
+import { BackButton } from "@/components/ui/BackButton/BackButton";
 
 
 export default async function PropertyDetailPage({
@@ -35,10 +36,10 @@ export default async function PropertyDetailPage({
     return (
         <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-8">
             {/* ─── Flèche retour ─────────────────────────────── */}
-            {/* TODO : composant BackButton (composant client).
-                Revient d'où on vient (accueil OU favoris) via router.back(),
-                avec fallback vers l'accueil si arrivée directe.
+            {/* BackButton : revient d'où on vient (accueil OU favoris) via
+                router.back(), avec fallback vers l'accueil si arrivée directe.
                 Voir contrat : components/ui/BackButton/BackButton.contrat.md */}
+            <BackButton />
 
             {/* ─── Carousel de photos ────────────────────────── */}
             {/* Le carousel est FONCTIONNEL : il prend les photos du logement. */}
