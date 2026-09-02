@@ -1,42 +1,40 @@
 "use client";
 
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/Button/Button";
 import { NavLink } from "@/components/ui/NavLink/NavLink";
-
-export interface LoginFormValues {
-    email: string;
-    password: string;
-}
+import { loginSchema, type LoginInput } from "@/lib/validators";
 
 export interface LoginFormProps {
-    /** Fonction appelée à la soumission avec les valeurs saisies */
-    onSubmit: (values: LoginFormValues) => void;
+    /** Fonction appelée à la soumission avec les valeurs validées */
+    onSubmit: (values: LoginInput) => void;
     /** Désactive le bouton pendant l'appel API */
     isSubmitting?: boolean;
-    /** Message d'erreur à afficher */
+    /** Message d'erreur global (ex: identifiants invalides renvoyés par le backend) */
     error?: string | null;
 }
 
 /**
  * Formulaire de connexion des utilisateurs existants.
- * Affiche le Header, les champs email/password, le bouton et les liens.
+ * Utilise react-hook-form + Zod (zodResolver) pour valider les champs
+ * AVANT d'envoyer la requête, avec des messages d'erreur en français.
  */
 export function LoginForm({
     onSubmit,
     isSubmitting = false,
     error = null,
 }: LoginFormProps) {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        onSubmit({ email, password });
-    };
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<LoginInput>({
+        resolver: zodResolver(loginSchema),
+    });
 
     return (
-        <form onSubmit={handleSubmit} className="font-inter">
+        <form onSubmit={handleSubmit(onSubmit)} className="font-inter" noValidate>
             <div className="mt-6 flex flex-col items-center gap-4">
                 <div className="flex flex-col items-start">
                     <label htmlFor="email" className="text-sm font-medium text-noir">
@@ -45,12 +43,16 @@ export function LoginForm({
                     <input
                         id="email"
                         type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
+                        {...register("email")}
                         autoComplete="email"
+                        aria-invalid={errors.email ? "true" : undefined}
                         className="mt-1 max-w-[360px] rounded-[4px] border border-grisLight px-3 py-2 text-sm font-medium text-noir"
                     />
+                    {errors.email && (
+                        <p className="mt-1 text-xs font-normal text-mainRed">
+                            {errors.email.message}
+                        </p>
+                    )}
                 </div>
 
                 <div className="flex flex-col items-start">
@@ -60,17 +62,21 @@ export function LoginForm({
                     <input
                         id="password"
                         type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
+                        {...register("password")}
                         autoComplete="current-password"
+                        aria-invalid={errors.password ? "true" : undefined}
                         className="mt-1 max-w-[360px] rounded-[4px] border border-grisLight px-3 py-2 text-sm font-medium text-noir"
                     />
+                    {errors.password && (
+                        <p className="mt-1 text-xs font-normal text-mainRed">
+                            {errors.password.message}
+                        </p>
+                    )}
                 </div>
             </div>
 
             {error && (
-                <p className="mt-4 text-sm font-normal text-mainRed">{error}</p>
+                <p className="mt-4 text-center text-sm font-normal text-mainRed">{error}</p>
             )}
 
             <div className="mt-6 flex justify-center">

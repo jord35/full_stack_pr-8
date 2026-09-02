@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/Button/Button";
 import { NavLink } from "@/components/ui/NavLink/NavLink";
+import { signupFormSchema, type SignupFormInput } from "@/lib/validators";
 
 export interface SignupFormValues {
     name: string;
@@ -11,7 +13,7 @@ export interface SignupFormValues {
 }
 
 export interface SignupFormProps {
-    /** Fonction appelée à la soumission avec les valeurs saisies */
+    /** Fonction appelée à la soumission avec les valeurs validées */
     onSubmit: (values: SignupFormValues) => void;
     /** Désactive le bouton pendant l'appel API */
     isSubmitting?: boolean;
@@ -21,28 +23,30 @@ export interface SignupFormProps {
 
 /**
  * Formulaire d'inscription des nouveaux utilisateurs.
- * Affiche le Header, les champs (nom, prénom, email, mot de passe),
- * la case CGU, le bouton et le lien vers la connexion.
+ * Utilise react-hook-form + Zod (zodResolver) pour valider les champs
+ * AVANT d'envoyer la requête, avec des messages d'erreur en français.
+ * Le prénom et le nom sont concaténés en un champ `name` à la soumission.
  */
 export function SignupForm({
     onSubmit,
     isSubmitting = false,
     error = null,
 }: SignupFormProps) {
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [acceptedCgu, setAcceptedCgu] = useState(false);
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<SignupFormInput>({
+        resolver: zodResolver(signupFormSchema),
+    });
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        const name = `${firstName} ${lastName}`.trim();
-        onSubmit({ name, email, password });
+    const handleFormSubmit = (values: SignupFormInput) => {
+        const name = `${values.firstName} ${values.lastName}`.trim();
+        onSubmit({ name, email: values.email, password: values.password });
     };
 
     return (
-        <form onSubmit={handleSubmit} className="font-inter">
+        <form onSubmit={handleSubmit(handleFormSubmit)} className="font-inter" noValidate>
             <div className="mt-6 flex flex-col items-center gap-4">
                 <div className="flex flex-col items-start">
                     <label htmlFor="firstName" className="text-sm font-medium text-noir">
@@ -51,12 +55,16 @@ export function SignupForm({
                     <input
                         id="firstName"
                         type="text"
-                        value={firstName}
-                        onChange={(e) => setFirstName(e.target.value)}
-                        required
+                        {...register("firstName")}
                         autoComplete="given-name"
+                        aria-invalid={errors.firstName ? "true" : undefined}
                         className="mt-1 max-w-[360px] rounded-[4px] border border-grisLight px-3 py-2 text-sm font-medium text-noir"
                     />
+                    {errors.firstName && (
+                        <p className="mt-1 text-xs font-normal text-mainRed">
+                            {errors.firstName.message}
+                        </p>
+                    )}
                 </div>
 
                 <div className="flex flex-col items-start">
@@ -66,12 +74,16 @@ export function SignupForm({
                     <input
                         id="lastName"
                         type="text"
-                        value={lastName}
-                        onChange={(e) => setLastName(e.target.value)}
-                        required
+                        {...register("lastName")}
                         autoComplete="family-name"
+                        aria-invalid={errors.lastName ? "true" : undefined}
                         className="mt-1 max-w-[360px] rounded-[4px] border border-grisLight px-3 py-2 text-sm font-medium text-noir"
                     />
+                    {errors.lastName && (
+                        <p className="mt-1 text-xs font-normal text-mainRed">
+                            {errors.lastName.message}
+                        </p>
+                    )}
                 </div>
 
                 <div className="flex flex-col items-start">
@@ -81,12 +93,16 @@ export function SignupForm({
                     <input
                         id="email"
                         type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
+                        {...register("email")}
                         autoComplete="email"
+                        aria-invalid={errors.email ? "true" : undefined}
                         className="mt-1 max-w-[360px] rounded-[4px] border border-grisLight px-3 py-2 text-sm font-medium text-noir"
                     />
+                    {errors.email && (
+                        <p className="mt-1 text-xs font-normal text-mainRed">
+                            {errors.email.message}
+                        </p>
+                    )}
                 </div>
 
                 <div className="flex flex-col items-start">
@@ -96,13 +112,16 @@ export function SignupForm({
                     <input
                         id="password"
                         type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                        minLength={6}
+                        {...register("password")}
                         autoComplete="new-password"
+                        aria-invalid={errors.password ? "true" : undefined}
                         className="mt-1 max-w-[360px] rounded-[4px] border border-grisLight px-3 py-2 text-sm font-medium text-noir"
                     />
+                    {errors.password && (
+                        <p className="mt-1 text-xs font-normal text-mainRed">
+                            {errors.password.message}
+                        </p>
+                    )}
                 </div>
             </div>
 
@@ -110,14 +129,12 @@ export function SignupForm({
                 <input
                     id="acceptCgu"
                     type="checkbox"
-                    checked={acceptedCgu}
-                    onChange={(e) => setAcceptedCgu(e.target.checked)}
                     className="h-4 w-4"
                 />
                 <label htmlFor="acceptCgu" className="text-xs font-normal text-grisDark">
-                    J'accepte les{" "}
+                    {"J'accepte les "}
                     <NavLink href="/docs/cgu" className="font-normal text-grisDark underline">
-                        conditions générales d'utilisation
+                        {"conditions générales d'utilisation"}
                     </NavLink>
                 </label>
             </div>
@@ -127,7 +144,7 @@ export function SignupForm({
             )}
 
             <div className="mt-6 flex justify-center">
-                <Button type="submit" disabled={isSubmitting || !acceptedCgu}>
+                <Button type="submit" disabled={isSubmitting}>
                     {isSubmitting ? "Inscription..." : "S'inscrire"}
                 </Button>
             </div>
