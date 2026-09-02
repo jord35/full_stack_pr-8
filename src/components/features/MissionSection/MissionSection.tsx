@@ -14,9 +14,9 @@ export function MissionSection() {
         <section className="grid gap-8 xl:grid-cols-2">
             {/* Bloc 1 : mission (1,2,3) */}
             <div className="flex flex-col gap-6 xl:col-start-1 xl:row-start-1">
-                <h2 className="font-inter text-2xl font-bold text-mainRed">Notre mission est simple :</h2>
+                <h2 className="text-2xl font-bold text-mainRed">Notre mission est simple :</h2>
 
-                <ul className="flex list-disc flex-col gap-3 pl-5 font-inter text-base text-noir">
+                <ul className="flex list-disc flex-col gap-3 pl-5 text-base text-noir">
                     <li>{"Offrir une plateforme fiable et simple d'utilisation"}</li>
                     <li>Proposer des hébergements variés et de qualité</li>
                     <li>Favoriser des échanges humains et chaleureux entre hôtes et voyageurs</li>
@@ -35,7 +35,7 @@ export function MissionSection() {
 
             {/* Bloc 3 : texte de déballage */}
             <div className="xl:col-start-1 xl:row-start-2">
-                <p className="font-inter text-base text-mainRed">
+                <p className="text-base text-mainRed">
                     Que vous cherchiez un appartement cosy en centre-ville, une maison en bord de mer
                     ou un chalet à la montagne, Kasa vous accompagne pour que chaque séjour devienne
                     un souvenir inoubliable.

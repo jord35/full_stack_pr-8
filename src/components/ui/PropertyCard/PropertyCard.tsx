@@ -41,12 +41,12 @@ export function PropertyCard({ property }: PropertyCardProps) {
             {/* Informations */}
             <div className="flex flex-1 flex-col p-6">
                 <div>
-                    <h2 className="font-inter text-lg font-bold text-noir">
+                    <h2 className="text-lg font-bold text-noir">
                         {property.title}
                     </h2>
                     <p className="mt-1 text-sm text-grisDark">{property.location}</p>
                 </div>
-                <p className="mt-auto font-inter text-base font-medium">
+                <p className="mt-auto text-base font-medium">
                     <span className="text-noir">{property.price_per_night} €</span>
                     <span className="text-grisDark"> par nuit</span>
                 </p>

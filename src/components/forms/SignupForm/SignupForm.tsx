@@ -46,7 +46,7 @@ export function SignupForm({
     };
 
     return (
-        <form onSubmit={handleSubmit(handleFormSubmit)} className="font-inter" noValidate>
+        <form onSubmit={handleSubmit(handleFormSubmit)} noValidate>
             <div className="mt-6 flex flex-col items-center gap-4">
                 <div className="flex flex-col items-start">
                     <label htmlFor="firstName" className="text-sm font-medium text-noir">

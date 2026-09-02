@@ -12,10 +12,10 @@ import { Button } from "@/components/ui/Button/Button";
 export default function NotFound() {
     return (
         <main className="flex min-h-screen flex-col items-center justify-center p-8">
-            <h1 className="font-inter text-[100px] font-black leading-none text-mainRed">
+            <h1 className="text-[100px] font-black leading-none text-mainRed">
                 404
             </h1>
-            <p className="mt-4 max-w-md text-center font-inter text-sm text-noir">
+            <p className="mt-4 max-w-md text-center text-sm text-noir">
                 Il semble que la page que vous cherchez ait pris des vacances… ou
                 {"n'ait jamais existé."}
             </p>

@@ -36,7 +36,7 @@ export function Header({
     sizeDesktop,
 }: HeaderProps) {
     return (
-        <header className="font-inter text-center">
+        <header className="text-center">
             <h1
                 className={`font-bold text-mainRed ${mobileSizeClasses[sizeMobile]} ${desktopSizeClasses[sizeDesktop]}`}
             >

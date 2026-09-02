@@ -40,10 +40,10 @@ export default async function Home() {
 
       {/* Section "Comment ça marche" */}
       <section className="mt-16 text-center">
-        <h2 className="font-inter text-2xl font-bold text-noir">
+        <h2 className="text-2xl font-bold text-noir">
           Comment ça marche ?
         </h2>
-        <p className="mx-auto mt-2 max-w-2xl font-inter text-sm font-normal text-grisDark">
+        <p className="mx-auto mt-2 max-w-2xl text-sm font-normal text-grisDark">
           Que vous partiez pour un week-end improvisé, des vacances en famille ou
           un voyage professionnel, Kasa vous aide à trouver un lieu qui vous
           ressemble.
