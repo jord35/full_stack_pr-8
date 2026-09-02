@@ -9,7 +9,7 @@ import { NavLink } from "@/components/ui/NavLink/NavLink";
 /**
  * Barre de navigation principale.
  * Mobile (< 1280px) : logo à gauche + burger menu à droite.
- * Desktop (>= 1280px) : À propos à gauche, logo au centre, liens à droite.
+ * Desktop (>= 1280px) : barre de 782px centrée contenant tous les liens.
  */
 export function NavBar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -17,66 +17,22 @@ export function NavBar() {
     const closeMenu = () => setIsOpen(false);
 
     return (
-        <header className="w-full border-b border-grisLight">
-            <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
-                {/* Mobile : logo à gauche */}
-                <div className="flex items-center xl:hidden">
+        <header className="w-full">
+            {/* ===== MOBILE (< 1280px) : logo à gauche + burger à droite ===== */}
+            <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 xl:hidden">
+                <div className="flex items-center">
                     <Link href="/" onClick={closeMenu} aria-label="Accueil Kasa">
                         <Logo />
                     </Link>
                 </div>
 
-                {/* Desktop : Accueil + À propos à gauche */}
-                <div className="hidden items-center gap-6 xl:flex">
-                    <NavLink href="/" className="text-lg font-medium">
-                        Accueil
-                    </NavLink>
-                    <NavLink href="/a-propos" className="text-lg font-medium">
-                        À propos
-                    </NavLink>
-                </div>
-
-                {/* Desktop : logo au centre */}
-                <div className="hidden xl:block">
-                    <Link href="/" onClick={closeMenu} aria-label="Accueil Kasa">
-                        <Logo />
-                    </Link>
-                </div>
-
-                {/* Desktop : liens de droite */}
-                <div className="hidden items-center gap-6 xl:flex">
-                    <NavLink
-                        href="/ajouter-un-logement"
-                        variant="primary"
-                        className="text-lg font-medium"
-                    >
-                        Ajouter un logement
-                    </NavLink>
-                    <NavLink href="/favorites" aria-label="Voir les favoris">
-                        <Image
-                            src="/icone/hart-main_red.svg"
-                            alt="Favoris"
-                            width={22}
-                            height={20}
-                        />
-                    </NavLink>
-                    <NavLink href="/messages" aria-label="Voir la messagerie">
-                        <Image
-                            src="/icone/messagerie.svg"
-                            alt="Messagerie"
-                            width={22}
-                            height={18}
-                        />
-                    </NavLink>
-                </div>
-
-                {/* Mobile : burger (fermé) / croix (ouvert) à droite */}
+                {/* Burger (fermé) / croix (ouvert) */}
                 <button
                     type="button"
                     aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
                     aria-expanded={isOpen}
                     onClick={() => setIsOpen(!isOpen)}
-                    className="flex h-10 w-10 items-center justify-center xl:hidden"
+                    className="flex h-10 w-10 items-center justify-center"
                 >
                     {isOpen ? (
                         <Image
@@ -96,7 +52,54 @@ export function NavBar() {
                 </button>
             </nav>
 
-            {/* Menu mobile déroulant */}
+            {/* ===== DESKTOP (>= 1280px) : barre de 782px centrée ===== */}
+            <nav className="hidden items-center justify-center xl:flex">
+                <div className="flex h-[56px] w-[782px] items-center justify-center gap-[50px] px-[80px]">
+                    <NavLink href="/" className="text-sm font-medium">
+                        Accueil
+                    </NavLink>
+                    <NavLink href="/a-propos" className="text-sm font-medium">
+                        À propos
+                    </NavLink>
+                    <Link href="/" aria-label="Accueil Kasa">
+                        <Logo />
+                    </Link>
+                    <NavLink
+                        href="/ajouter-un-logement"
+                        variant="primary"
+                        className="text-sm font-medium"
+                    >
+                        + Ajouter un logement
+                    </NavLink>
+
+                    {/* Groupe des deux icônes (cœur, bordure, messagerie) */}
+                    <div className="flex items-center gap-3">
+                        <NavLink href="/favorites" aria-label="Voir les favoris">
+                            <Image
+                                src="/icone/hart-main_red.svg"
+                                alt="Favoris"
+                                width={20}
+                                height={18}
+                            />
+                        </NavLink>
+                        {/* Bordure verticale courte, centrée, entre cœur et messagerie */}
+                        <span
+                            aria-hidden="true"
+                            className="h-[10px] w-px bg-mainRed"
+                        />
+                        <NavLink href="/messages" aria-label="Voir la messagerie">
+                            <Image
+                                src="/icone/messagerie.svg"
+                                alt="Messagerie"
+                                width={22}
+                                height={18}
+                            />
+                        </NavLink>
+                    </div>
+                </div>
+            </nav>
+
+            {/* ===== Menu mobile déroulant ===== */}
             {isOpen && (
                 <div className="flex flex-col gap-6 border-t border-grisLight px-4 py-6 xl:hidden">
                     <NavLink

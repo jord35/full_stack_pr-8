@@ -31,9 +31,12 @@ Il contient :
 - Bouton "Ajouter un logement" : lien `<Link>` stylé (200x36px, fond `mainRed`, radius 10, padding 32/8, Inter medium 14 blanc)
 
 ### Desktop (>= 1280px)
+- La barre de navigation est une **div de 782px centrée** (hauteur 56px, padding interne left/right 100px), dans une div pleine largeur non apparente
 - À gauche : **Accueil**, **À propos**
 - **Logo** au centre
-- À droite du logo : **Ajouter un logement** (rouge), **Favoris** (cœur), **Messagerie** (message)
+- À droite du logo : **+ Ajouter un logement** (rouge, avec un "+" avant le texte), **Favoris** (cœur), **Messagerie** (message)
+- Espacement entre "+ Ajouter un logement" et le cœur : **28px** (`gap-7`)
+- Une **bordure verticale courte** (hauteur ~10px, centrée, rouge `mainRed`) sépare le cœur de la messagerie
 - Le burger menu est masqué
 
 ## État React
