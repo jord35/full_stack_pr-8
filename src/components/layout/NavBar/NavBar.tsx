@@ -54,7 +54,7 @@ export function NavBar() {
 
             {/* ===== DESKTOP (>= 1280px) : barre de 782px centrée ===== */}
             <nav className="hidden items-center justify-center xl:flex">
-                <div className="flex h-[56px] w-[782px] items-center justify-center gap-[50px] px-[80px]">
+                <div className="flex h-[56px] w-[782px] items-center justify-center gap-[50px] px-[60px]">
                     <NavLink href="/" className="text-sm font-medium">
                         Accueil
                     </NavLink>
