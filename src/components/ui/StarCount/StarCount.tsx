@@ -20,7 +20,7 @@ export function StarCount({ rating }: StarCountProps) {
     }
 
     return (
-        <div className="inline-flex items-center gap-1 rounded-[10px] bg-grisDark px-2 py-1 text-white">
+        <div className="inline-flex items-center gap-1 rounded-[10px] bg-grisLight px-2 py-1 text-noir">
             {/* Étoile décorative */}
             <Image
                 src="/icone/star.svg"
