@@ -18,7 +18,7 @@ export interface PropertyGridProps {
  */
 export function PropertyGrid({ properties }: PropertyGridProps) {
     return (
-        <ul className="grid grid-cols-1 gap-6 xl:grid-cols-3">
+        <ul className="grid grid-cols-1 gap-0 xl:grid-cols-3 xl:gap-6">
             {properties.map((property) => (
                 <li key={property.id}>
                     <PropertyCard property={property} />
