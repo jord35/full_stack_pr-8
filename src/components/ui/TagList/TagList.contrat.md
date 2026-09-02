@@ -17,35 +17,33 @@ C'est un composant **UI** réutilisable : il reçoit un titre et une liste de ch
 | Propriété | Valeur |
 |-----------|--------|
 | Background | **Gris clair** (`bg-grisLight`) |
+| Couleur du texte | **Gris dark** (`text-grisDark`) |
+| Typo | **Inter regular 12px** (`text-xs`) |
 | Padding gauche/droite | **16px** (`px-4`) |
 | Padding haut/bas | **8px** (`py-2`) |
-| Largeur | **100px** (`w-[100px]`) |
-| Hauteur | **33px** (`h-[33px]`) |
+| Largeur | **Auto** (s'adapte au contenu, pas de largeur fixe) |
 | Border radius | **5px** (`rounded-[5px]`) |
 
-## Disposition (grille responsive)
+## Disposition (responsive)
 
-La grille s'adapte à l'écran pour ne **jamais déborder en largeur** :
-
-### Desktop
-- **3 tags par colonne** (fixe).
+### Desktop (>= 1280px)
+- **Grille** : **3 tags par colonne** (fixe), flux en colonnes (`xl:grid-flow-col`).
 - Le **nombre de colonnes** augmente si besoin : `colonnes = ceil(items.length / 3)`.
 - Exemple : 3 tags → 1 colonne, 6 → 2 colonnes, 9 → 3 colonnes, 12 → 4 colonnes.
 
-### Mobile
-- **3 colonnes maximum** (fixe).
-- Le **nombre de tags par colonne** augmente si besoin : `tags_par_colonne = ceil(items.length / 3)`.
-- Exemple : 3 tags → 1 par colonne, 6 → 2 par colonne, 9 → 3 par colonne, 12 → 4 par colonne.
+### Mobile (< 1280px)
+- **Flex wrap** (`flex flex-wrap`) : les tags s'enchaînent à leur **taille naturelle** (chacun tient sur une ligne), et passent à la ligne suivante si besoin.
+- Chaque tag ne prend que la largeur de son contenu + padding (pas de contrainte de colonne étroite).
 
 ### Tableau comparatif
 
-| Tags | Desktop (colonnes × tags/col) | Mobile (colonnes × tags/col) |
-|------|-------------------------------|------------------------------|
-| 3 | 1 × 3 | 3 × 1 |
-| 6 | 2 × 3 | 3 × 2 |
-| 9 | 3 × 3 | 3 × 3 |
-| 12 | 4 × 3 | 3 × 4 |
-| 15 | 5 × 3 | 3 × 5 |
+| Tags | Desktop (colonnes × tags/col) | Mobile (flex wrap) |
+|------|-------------------------------|--------------------|
+| 3 | 1 × 3 | 3 tags sur une ligne (si la place le permet) |
+| 6 | 2 × 3 | 6 tags enroulés |
+| 9 | 3 × 3 | 9 tags enroulés |
+| 12 | 4 × 3 | 12 tags enroulés |
+| 15 | 5 × 3 | 15 tags enroulés |
 
 ## Composant client ?
 

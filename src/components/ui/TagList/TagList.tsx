@@ -23,11 +23,11 @@ export function TagList({ title, items }: TagListProps) {
                   remplissent de gauche à droite puis retour à la ligne.
                 - Desktop (xl) : 3 tags par colonne (grid-rows-3) avec flux en colonnes
                   (grid-flow-col), le nombre de colonnes s'adapte automatiquement. */}
-            <div className="grid grid-cols-3 gap-2 xl:grid-flow-col xl:grid-cols-none xl:grid-rows-3">
+            <div className="flex flex-wrap gap-2 xl:grid xl:grid-flow-col xl:grid-cols-none xl:grid-rows-3 xl:justify-start xl:justify-items-start">
                 {items.map((item, index) => (
                     <span
                         key={item + index}
-                        className="flex h-[33px] w-[100px] items-center justify-center rounded-[5px] bg-grisLight px-4 py-2 text-sm text-noir"
+                        className="inline-flex min-w-[100px] items-center justify-center rounded-[5px] bg-grisLight px-4 py-2 text-xs text-grisDark"
                     >
                         {item}
                     </span>
