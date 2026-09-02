@@ -3,6 +3,7 @@ import { getProperties, getProperty } from "@/lib/api";
 import { Carousel } from "@/components/features/Carousel/Carousel";
 import { HostCard } from "@/components/features/HostCard/HostCard";
 import { BackButton } from "@/components/ui/BackButton/BackButton";
+import { InfoLogement } from "@/components/ui/InfoLogement/InfoLogement";
 import { TagList } from "@/components/ui/TagList/TagList";
 
 
@@ -56,7 +57,13 @@ export default async function PropertyDetailPage({
             <HostCard property={property} />
 
             {/* ─── Titre, lieu et description ────────────────── */}
-            {/* TODO : afficher property.title, property.location, property.description */}
+            {/* InfoLogement : affiche le titre, la localisation (avec icône)
+                et la description du logement. */}
+            <InfoLogement
+                title={property.title}
+                location={property.location}
+                description={property.description}
+            />
 
             {/* ─── Liste des équipements ─────────────────────── */}
             {/* TagList : affiche les équipements du logement en grille de tags. */}
@@ -64,7 +71,9 @@ export default async function PropertyDetailPage({
 
             {/* ─── Liste des catégories (tags) ───────────────── */}
             {/* TagList : affiche les catégories du logement en grille de tags. */}
-            <TagList title="Catégories" items={property.tags ?? []} />
+            <div className="mt-10">
+                <TagList title="Catégories" items={property.tags ?? []} />
+            </div>
         </main>
     );
 }
