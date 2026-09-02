@@ -1,8 +1,10 @@
+import type { ReactNode } from "react";
+
 export type Size = "sm" | "md" | "lg";
 
 export interface HeaderProps {
-    /** Titre principal, rendu dans un <h1> */
-    title: string;
+    /** Titre principal, rendu dans un <h1> (peut contenir du JSX, ex: <br />) */
+    title: ReactNode;
     /** Description, rendue sous le titre */
     description: string;
     /** Taille du titre sur mobile (< breakpoint) */

@@ -9,7 +9,7 @@ C'est un composant **présentationnel** : il ne fait que recevoir des props et l
 
 | Prop | Type | Défaut | Description |
 |------|------|--------|-------------|
-| `title` | `string` | requis | Le titre principal, rendu dans un `<h1>` |
+| `title` | `ReactNode` | requis | Le titre principal, rendu dans un `<h1>`. Peut contenir du JSX (ex: `<br />` pour un retour à la ligne) |
 | `description` | `string` | requis | La description, rendue sous le titre |
 | `sizeMobile` | `"sm" \| "md" \| "lg"` | requis | Taille du titre sur mobile (< breakpoint) |
 | `sizeDesktop` | `"sm" \| "md" \| "lg"` | requis | Taille du titre sur desktop (>= breakpoint) |
