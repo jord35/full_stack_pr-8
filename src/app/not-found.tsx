@@ -17,7 +17,7 @@ export default function NotFound() {
             </h1>
             <p className="mt-4 max-w-md text-center font-inter text-sm text-noir">
                 Il semble que la page que vous cherchez ait pris des vacances… ou
-                n'ait jamais existé.
+                {"n'ait jamais existé."}
             </p>
             <div className="mt-8 flex flex-col items-center gap-4">
                 <Link href="/">

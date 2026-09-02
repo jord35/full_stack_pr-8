@@ -17,7 +17,7 @@ export function MissionSection() {
                 <h2 className="font-inter text-2xl font-bold text-mainRed">Notre mission est simple :</h2>
 
                 <ul className="flex list-disc flex-col gap-3 pl-5 font-inter text-base text-noir">
-                    <li>Offrir une plateforme fiable et simple d'utilisation</li>
+                    <li>{"Offrir une plateforme fiable et simple d'utilisation"}</li>
                     <li>Proposer des hébergements variés et de qualité</li>
                     <li>Favoriser des échanges humains et chaleureux entre hôtes et voyageurs</li>
                 </ul>

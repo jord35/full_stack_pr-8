@@ -51,7 +51,7 @@ export function FavoritesList({ properties }: FavoritesListProps) {
     if (favoriteProperties.length === 0) {
         return (
             <p className="text-center font-inter text-base text-grisDark">
-                Vous n'avez pas encore de favoris.
+                {"Vous n'avez pas encore de favoris."}
             </p>
         );
     }

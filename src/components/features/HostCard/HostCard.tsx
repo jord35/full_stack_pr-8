@@ -56,7 +56,7 @@ export function HostCard({ property }: HostCardProps) {
             {/* Zone boutons */}
             <div className="mt-4 flex flex-col gap-2">
                 <Button variant="primary" onClick={handleContact}>
-                    Contacter l'hôte
+                    {"Contacter l'hôte"}
                 </Button>
                 <Button variant="secondary" onClick={handleContact}>
                     Envoyer un message
