@@ -24,8 +24,8 @@ export function Logo({ className = "" }: LogoProps) {
             <Image
                 src="/logo/Logo.svg"
                 alt="Logo Kasa"
-                width={114}
-                height={41}
+                width={113}
+                height={40}
                 className="hidden xl:block"
             />
         </div>
