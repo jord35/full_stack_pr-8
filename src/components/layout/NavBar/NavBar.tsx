@@ -8,7 +8,7 @@ import { NavLink } from "@/components/ui/NavLink/NavLink";
 
 /**
  * Barre de navigation principale.
- * Mobile (< 1280px) : burger menu + logo S.
+ * Mobile (< 1280px) : logo à gauche + burger menu à droite.
  * Desktop (>= 1280px) : À propos à gauche, logo au centre, liens à droite.
  */
 export function NavBar() {
@@ -19,10 +19,14 @@ export function NavBar() {
     return (
         <header className="w-full border-b border-grisLight">
             <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
-                {/* Espace réservé à gauche en mobile pour équilibrer le burger */}
-                <div className="xl:hidden" />
+                {/* Mobile : logo à gauche */}
+                <div className="flex items-center xl:hidden">
+                    <Link href="/" onClick={closeMenu} aria-label="Accueil Kasa">
+                        <Logo />
+                    </Link>
+                </div>
 
-                {/* Accueil + À propos : visibles en desktop, à gauche */}
+                {/* Desktop : Accueil + À propos à gauche */}
                 <div className="hidden items-center gap-6 xl:flex">
                     <NavLink href="/" className="text-lg font-medium">
                         Accueil
@@ -32,12 +36,14 @@ export function NavBar() {
                     </NavLink>
                 </div>
 
-                {/* Logo : au centre */}
-                <Link href="/" onClick={closeMenu} aria-label="Accueil Kasa">
-                    <Logo />
-                </Link>
+                {/* Desktop : logo au centre */}
+                <div className="hidden xl:block">
+                    <Link href="/" onClick={closeMenu} aria-label="Accueil Kasa">
+                        <Logo />
+                    </Link>
+                </div>
 
-                {/* Liens de droite : visibles en desktop */}
+                {/* Desktop : liens de droite */}
                 <div className="hidden items-center gap-6 xl:flex">
                     <NavLink
                         href="/ajouter-un-logement"
@@ -64,42 +70,72 @@ export function NavBar() {
                     </NavLink>
                 </div>
 
-                {/* Burger menu : visible en mobile, caché en desktop */}
+                {/* Mobile : burger (fermé) / croix (ouvert) à droite */}
                 <button
                     type="button"
-                    aria-label="Ouvrir le menu"
+                    aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
                     aria-expanded={isOpen}
                     onClick={() => setIsOpen(!isOpen)}
-                    className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 xl:hidden"
+                    className="flex h-10 w-10 items-center justify-center xl:hidden"
                 >
-                    <span className="block h-0.5 w-6 bg-noir" />
-                    <span className="block h-0.5 w-6 bg-noir" />
-                    <span className="block h-0.5 w-6 bg-noir" />
+                    {isOpen ? (
+                        <Image
+                            src="/icone/croix.svg"
+                            alt="Fermer le menu"
+                            width={26}
+                            height={26}
+                        />
+                    ) : (
+                        <Image
+                            src="/icone/burger.svg"
+                            alt="Ouvrir le menu"
+                            width={29}
+                            height={21}
+                        />
+                    )}
                 </button>
             </nav>
 
             {/* Menu mobile déroulant */}
             {isOpen && (
-                <div className="flex flex-col gap-4 border-t border-gray-200 px-4 py-4 xl:hidden">
-                    <NavLink href="/" onClick={closeMenu}>
+                <div className="flex flex-col gap-6 border-t border-grisLight px-4 py-6 xl:hidden">
+                    <NavLink
+                        href="/"
+                        onClick={closeMenu}
+                        className="text-2xl font-normal text-noir"
+                    >
                         Accueil
                     </NavLink>
-                    <NavLink href="/a-propos" onClick={closeMenu}>
+                    <NavLink
+                        href="/a-propos"
+                        onClick={closeMenu}
+                        className="text-2xl font-normal text-noir"
+                    >
                         À propos
                     </NavLink>
                     <NavLink
-                        href="/ajouter-un-logement"
-                        variant="primary"
+                        href="/messages"
                         onClick={closeMenu}
+                        className="text-2xl font-normal text-noir"
                     >
-                        Ajouter un logement
-                    </NavLink>
-                    <NavLink href="/favorites" onClick={closeMenu}>
-                        Favoris
-                    </NavLink>
-                    <NavLink href="/messages" onClick={closeMenu}>
                         Messagerie
                     </NavLink>
+                    <NavLink
+                        href="/favorites"
+                        onClick={closeMenu}
+                        className="text-2xl font-normal text-noir"
+                    >
+                        Favoris
+                    </NavLink>
+
+                    {/* Ajouter un logement : lien stylé en bouton */}
+                    <Link
+                        href="/ajouter-un-logement"
+                        onClick={closeMenu}
+                        className="inline-flex h-[36px] w-[200px] items-center justify-center rounded-[10px] bg-mainRed px-8 py-2 text-sm font-medium text-white"
+                    >
+                        Ajouter un logement
+                    </Link>
                 </div>
             )}
         </header>
