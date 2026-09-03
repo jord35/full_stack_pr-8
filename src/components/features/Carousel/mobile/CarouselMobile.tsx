@@ -64,7 +64,7 @@ export function CarouselMobile({ pictures }: CarouselMobileProps) {
     return (
         <div className="w-full">
             {/* Grande image */}
-            <div className="relative h-[300px] w-full overflow-hidden rounded-lg">
+            <div className="relative h-[421px] w-full overflow-hidden rounded-lg">
                 <ContentImage
                     src={images[selectedIndex]}
                     alt={`Photo ${selectedIndex + 1} du logement`}

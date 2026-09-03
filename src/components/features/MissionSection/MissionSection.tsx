@@ -24,7 +24,7 @@ export function MissionSection() {
             </div>
 
             {/* Bloc 2 : image */}
-            <div className="relative h-64 w-full overflow-hidden rounded-lg xl:col-start-2 xl:row-start-1 xl:row-span-2 xl:h-full">
+            <div className="relative h-[458px] w-full overflow-hidden rounded-lg xl:col-start-2 xl:row-start-1 xl:row-span-2 xl:h-full">
                 <ContentImage
                     src="/images/mocks/image-3.png"
                     alt="L'image d'une magnifique maison avec de grandes baies vitrées"

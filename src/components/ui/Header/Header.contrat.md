@@ -10,7 +10,7 @@ C'est un composant **présentationnel** : il ne fait que recevoir des props et l
 | Prop | Type | Défaut | Description |
 |------|------|--------|-------------|
 | `title` | `ReactNode` | requis | Le titre principal, rendu dans un `<h1>`. Peut contenir du JSX (ex: `<br />` pour un retour à la ligne) |
-| `description` | `string` | requis | La description, rendue sous le titre |
+| `description` | `ReactNode` | requis | La description, rendue sous le titre. Peut contenir du JSX (ex: plusieurs `<p>` pour former plusieurs paragraphes) |
 | `sizeMobile` | `"sm" \| "md" \| "lg"` | requis | Taille du titre sur mobile (< breakpoint) |
 | `sizeDesktop` | `"sm" \| "md" \| "lg"` | requis | Taille du titre sur desktop (>= breakpoint) |
 
@@ -27,7 +27,7 @@ Les tailles utilisent les **classes Tailwind natives**. Le mapping entre les val
 ## Comportement
 - Rend un `<h1>` contenant `title`, avec une taille qui dépend de `sizeMobile` (mobile) et `sizeDesktop` (desktop).
 - Le `<h1>` est en **gras** (`font-bold`) et en couleur **`mainRed`**.
-- Rend une description (paragraphe) contenant `description`, sous le titre.
+- Rend une description contenant `description`, sous le titre. Si `description` est une simple chaîne, elle est affichée telle quelle ; si c'est du JSX (ex: plusieurs `<p>`), chaque paragraphe est rendu dans un conteneur commun.
 - Le titre et la description sont **centrés horizontalement** (`text-center`).
 - Sur **desktop**, la description a une **largeur max de 488px** (`xl:max-w-[488px]`) pour former un bloc lisible. Sur mobile, elle s'adapte naturellement.
 - Le responsive est géré dans le composant : la taille mobile s'applique en dessous du breakpoint, la taille desktop au-dessus.

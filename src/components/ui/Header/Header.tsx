@@ -5,8 +5,8 @@ export type Size = "sm" | "md" | "lg";
 export interface HeaderProps {
     /** Titre principal, rendu dans un <h1> (peut contenir du JSX, ex: <br />) */
     title: ReactNode;
-    /** Description, rendue sous le titre */
-    description: string;
+    /** Description, rendue sous le titre (peut contenir du JSX, ex: plusieurs <p>) */
+    description: ReactNode;
     /** Taille du titre sur mobile (< breakpoint) */
     sizeMobile: Size;
     /** Taille du titre sur desktop (>= breakpoint) */
@@ -42,7 +42,9 @@ export function Header({
             >
                 {title}
             </h1>
-            <p className="mx-auto mt-2 text-sm font-normal text-noir xl:max-w-[488px]">{description}</p>
+            <div className="mx-auto mt-2 text-sm font-normal text-noir xl:max-w-[488px]">
+                {description}
+            </div>
         </header>
     );
 }

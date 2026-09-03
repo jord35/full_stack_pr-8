@@ -52,3 +52,17 @@ export const Petit: Story = {
         sizeDesktop: "sm",
     },
 };
+
+export const DescriptionMultiParagraphes: Story = {
+    args: {
+        title: "À propos",
+        description: (
+            <>
+                <p>Premier paragraphe de la description.</p>
+                <p className="mt-2">Deuxième paragraphe, séparé par un espacement.</p>
+            </>
+        ),
+        sizeMobile: "lg",
+        sizeDesktop: "lg",
+    },
+};
