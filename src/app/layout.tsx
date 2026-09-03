@@ -33,11 +33,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} flex min-h-screen flex-col antialiased`}
       >
         <AuthProvider>
           <NavBar />
-          {children}
+          <div className="flex flex-1 flex-col">{children}</div>
           <Footer />
         </AuthProvider>
       </body>

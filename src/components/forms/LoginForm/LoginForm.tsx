@@ -34,9 +34,9 @@ export function LoginForm({
     });
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} noValidate>
+        <form onSubmit={handleSubmit(onSubmit)} noValidate className="mt-6">
             <div className="mt-6 flex flex-col items-center gap-4">
-                <div className="flex flex-col items-start">
+                <div className="flex w-full flex-col items-start">
                     <label htmlFor="email" className="text-sm font-medium text-noir">
                         Adresse email
                     </label>
@@ -46,7 +46,7 @@ export function LoginForm({
                         {...register("email")}
                         autoComplete="email"
                         aria-invalid={errors.email ? "true" : undefined}
-                        className="mt-1 max-w-[360px] rounded-[4px] border border-grisLight px-3 py-2 text-sm font-medium text-noir"
+                        className="mt-1 w-full rounded-[4px] border border-grisLight px-3 py-2 text-sm font-medium text-noir"
                     />
                     {errors.email && (
                         <p className="mt-1 text-xs font-normal text-mainRed">
@@ -55,7 +55,7 @@ export function LoginForm({
                     )}
                 </div>
 
-                <div className="flex flex-col items-start">
+                <div className="flex w-full flex-col items-start">
                     <label htmlFor="password" className="text-sm font-medium text-noir">
                         Mot de passe
                     </label>
@@ -65,7 +65,7 @@ export function LoginForm({
                         {...register("password")}
                         autoComplete="current-password"
                         aria-invalid={errors.password ? "true" : undefined}
-                        className="mt-1 max-w-[360px] rounded-[4px] border border-grisLight px-3 py-2 text-sm font-medium text-noir"
+                        className="mt-1 w-full rounded-[4px] border border-grisLight px-3 py-2 text-sm font-medium text-noir"
                     />
                     {errors.password && (
                         <p className="mt-1 text-xs font-normal text-mainRed">

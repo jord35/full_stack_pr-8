@@ -46,28 +46,9 @@ export function SignupForm({
     };
 
     return (
-        <form onSubmit={handleSubmit(handleFormSubmit)} noValidate>
+        <form onSubmit={handleSubmit(handleFormSubmit)} noValidate className="mt-6">
             <div className="mt-6 flex flex-col items-center gap-4">
-                <div className="flex flex-col items-start">
-                    <label htmlFor="firstName" className="text-sm font-medium text-noir">
-                        Prénom
-                    </label>
-                    <input
-                        id="firstName"
-                        type="text"
-                        {...register("firstName")}
-                        autoComplete="given-name"
-                        aria-invalid={errors.firstName ? "true" : undefined}
-                        className="mt-1 max-w-[360px] rounded-[4px] border border-grisLight px-3 py-2 text-sm font-medium text-noir"
-                    />
-                    {errors.firstName && (
-                        <p className="mt-1 text-xs font-normal text-mainRed">
-                            {errors.firstName.message}
-                        </p>
-                    )}
-                </div>
-
-                <div className="flex flex-col items-start">
+                <div className="flex w-full flex-col items-start">
                     <label htmlFor="lastName" className="text-sm font-medium text-noir">
                         Nom
                     </label>
@@ -77,7 +58,7 @@ export function SignupForm({
                         {...register("lastName")}
                         autoComplete="family-name"
                         aria-invalid={errors.lastName ? "true" : undefined}
-                        className="mt-1 max-w-[360px] rounded-[4px] border border-grisLight px-3 py-2 text-sm font-medium text-noir"
+                        className="mt-1 w-full rounded-[4px] border border-grisLight px-3 py-2 text-sm font-medium text-noir"
                     />
                     {errors.lastName && (
                         <p className="mt-1 text-xs font-normal text-mainRed">
@@ -86,7 +67,26 @@ export function SignupForm({
                     )}
                 </div>
 
-                <div className="flex flex-col items-start">
+                <div className="flex w-full flex-col items-start">
+                    <label htmlFor="firstName" className="text-sm font-medium text-noir">
+                        Prénom
+                    </label>
+                    <input
+                        id="firstName"
+                        type="text"
+                        {...register("firstName")}
+                        autoComplete="given-name"
+                        aria-invalid={errors.firstName ? "true" : undefined}
+                        className="mt-1 w-full rounded-[4px] border border-grisLight px-3 py-2 text-sm font-medium text-noir"
+                    />
+                    {errors.firstName && (
+                        <p className="mt-1 text-xs font-normal text-mainRed">
+                            {errors.firstName.message}
+                        </p>
+                    )}
+                </div>
+
+                <div className="flex w-full flex-col items-start">
                     <label htmlFor="email" className="text-sm font-medium text-noir">
                         Adresse email
                     </label>
@@ -96,7 +96,7 @@ export function SignupForm({
                         {...register("email")}
                         autoComplete="email"
                         aria-invalid={errors.email ? "true" : undefined}
-                        className="mt-1 max-w-[360px] rounded-[4px] border border-grisLight px-3 py-2 text-sm font-medium text-noir"
+                        className="mt-1 w-full rounded-[4px] border border-grisLight px-3 py-2 text-sm font-medium text-noir"
                     />
                     {errors.email && (
                         <p className="mt-1 text-xs font-normal text-mainRed">
@@ -105,7 +105,7 @@ export function SignupForm({
                     )}
                 </div>
 
-                <div className="flex flex-col items-start">
+                <div className="flex w-full flex-col items-start">
                     <label htmlFor="password" className="text-sm font-medium text-noir">
                         Mot de passe
                     </label>
@@ -115,7 +115,7 @@ export function SignupForm({
                         {...register("password")}
                         autoComplete="new-password"
                         aria-invalid={errors.password ? "true" : undefined}
-                        className="mt-1 max-w-[360px] rounded-[4px] border border-grisLight px-3 py-2 text-sm font-medium text-noir"
+                        className="mt-1 w-full rounded-[4px] border border-grisLight px-3 py-2 text-sm font-medium text-noir"
                     />
                     {errors.password && (
                         <p className="mt-1 text-xs font-normal text-mainRed">

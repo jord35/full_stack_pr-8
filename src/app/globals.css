@@ -20,10 +20,11 @@
   --color-grisDark: #565656;
   --color-darkOrange: #842c16;
   --color-lightOrange: #fffaf8;
+  --color-creme: #fffbf9;
 }
 
 body {
-  background: var(--background);
+  background: var(--color-creme);
   color: var(--foreground);
   font-family: var(--font-inter), Arial, Helvetica, sans-serif;
 }

@@ -8,7 +8,7 @@ import Image from "next/image";
  */
 export function Footer() {
     return (
-        <footer className="w-full border-t border-grisLight">
+        <footer className="w-full border-t border-grisLight bg-white">
             <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-6">
                 <Image
                     src="/logo/Logo-s.svg"

@@ -15,14 +15,22 @@ export default function SignupPage() {
     );
 
     return (
-        <main className="flex min-h-screen flex-col items-center justify-center p-8">
-            <Header
-                title="Rejoignez la communauté Kasa"
-                description="Créez votre compte et commencez à voyager autrement : réservez des logements uniques, découvrez de nouvelles destinations et partagez vos propres lieux avec d'autres voyageurs."
-                sizeMobile="md"
-                sizeDesktop="lg"
-            />
-            <SignupForm onSubmit={submit} isSubmitting={isSubmitting} error={error} />
+        <main className="flex flex-1 flex-col items-center justify-center">
+            <div className="mx-4 max-w-md rounded-[10px] bg-white px-4 py-8">
+                <Header
+                    title={
+                        <>
+                            Rejoignez la
+                            <br />
+                            Communauté Kasa
+                        </>
+                    }
+                    description="Créez votre compte et commencez à voyager autrement : réservez des logements uniques, découvrez de nouvelles destinations et partagez vos propres lieux avec d'autres voyageurs."
+                    sizeMobile="md"
+                    sizeDesktop="lg"
+                />
+                <SignupForm onSubmit={submit} isSubmitting={isSubmitting} error={error} />
+            </div>
         </main>
     );
 }

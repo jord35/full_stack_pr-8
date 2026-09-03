@@ -17,7 +17,7 @@ export function NavBar() {
     const closeMenu = () => setIsOpen(false);
 
     return (
-        <header className="w-full">
+        <header className="w-full bg-white">
             {/* ===== MOBILE (< 1280px) : logo à gauche + burger à droite ===== */}
             <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 xl:hidden">
                 <div className="flex items-center">
