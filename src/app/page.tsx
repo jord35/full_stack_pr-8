@@ -27,7 +27,7 @@ export default async function Home() {
         <h2 className="sr-only">Découvrez nos hébergements</h2>
         <div className="relative mt-10 h-[458px] w-full overflow-hidden rounded-[20px]">
           <ContentImage
-            src="/images/mocks/home_img.png"
+            src="/images/mocks/home_img.webp"
             alt="Bienvenue chez Kasa, la location d'appartements entre particuliers"
             fill
             priority

@@ -13,7 +13,7 @@ vi.mock("next/image", () => ({
 
 const IMG_1 = "/images/mocks/image-3.png";
 const IMG_2 = "/images/mocks/image-4.png";
-const IMG_3 = "/images/mocks/home_img.png";
+const IMG_3 = "/images/mocks/home_img.webp";
 
 describe("CarouselMobile", () => {
     it("affiche la première image comme grande image par défaut", () => {
