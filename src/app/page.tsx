@@ -30,6 +30,7 @@ export default async function Home() {
             src="/images/mocks/home_img.png"
             alt="Bienvenue chez Kasa, la location d'appartements entre particuliers"
             fill
+            priority
             className="origin-center scale-160 object-cover xl:scale-100"
           />
         </div>

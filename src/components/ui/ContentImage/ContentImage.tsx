@@ -15,6 +15,8 @@ export interface ContentImageProps {
     className?: string;
     /** Tailles d'affichage pour l'optimisation responsive */
     sizes?: string;
+    /** Image prioritaire (LCP) : désactive le lazy-loading et précharge */
+    priority?: boolean;
 }
 
 /**
@@ -31,6 +33,7 @@ export function ContentImage({
     height,
     className,
     sizes,
+    priority = false,
 }: ContentImageProps) {
     return (
         <Image
@@ -41,6 +44,7 @@ export function ContentImage({
             height={fill ? undefined : height}
             className={className}
             sizes={sizes}
+            priority={priority}
         />
     );
 }

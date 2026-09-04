@@ -15,7 +15,7 @@ export default function AboutPage() {
                         </p>
                         <p className="mt-2">
                             Depuis notre création, nous mettons en relation des voyageurs en quête
-                            d'authenticité avec des hôtes passionnés qui aiment partager leur région
+                            d’authenticité avec des hôtes passionnés qui aiment partager leur région
                             et leurs bonnes adresses.
                         </p>
                     </>

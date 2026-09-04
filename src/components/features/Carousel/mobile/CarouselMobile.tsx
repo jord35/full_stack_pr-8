@@ -69,6 +69,7 @@ export function CarouselMobile({ pictures }: CarouselMobileProps) {
                     src={images[selectedIndex]}
                     alt={`Photo ${selectedIndex + 1} du logement`}
                     fill
+                    priority
                     className="object-cover"
                     sizes="100vw"
                 />

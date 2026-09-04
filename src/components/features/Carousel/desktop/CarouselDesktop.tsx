@@ -69,12 +69,12 @@ export function CarouselDesktop({ pictures }: CarouselDesktopProps) {
         <div className="w-full">
             <div className="flex gap-4">
                 {/* Grande image */}
-                <div className="relative h-[400px] flex-1 overflow-hidden rounded-lg">
+                <div className="relative h-[373px] flex-1 overflow-hidden rounded-lg">
                     <ContentImage
                         src={images[selectedIndex]}
                         alt={`Photo ${selectedIndex + 1} du logement`}
                         fill
-                        className="object-cover"
+                        className="object-cover object-left"
                         sizes="(min-width: 1280px) 60vw, 100vw"
                     />
                 </div>

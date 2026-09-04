@@ -28,7 +28,7 @@ export function InfoLogement({
             <h1 className="text-2xl font-medium text-noir">{title}</h1>
 
             {/* Localisation avec icône épingle */}
-            <p className="mt-1 flex items-center gap-1 text-sm text-grisDark">
+            <p className="mt-4 flex items-center gap-1 text-sm text-grisDark">
                 <Image
                     src="/icone/location.svg"
                     alt=""
@@ -40,7 +40,7 @@ export function InfoLogement({
             </p>
 
             {/* Description */}
-            <p className="mt-2 text-sm text-noir">{description}</p>
+            <p className="mt-8 text-sm text-noir">{description}</p>
         </div>
     );
 }
