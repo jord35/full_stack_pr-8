@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { NavBar } from "@/components/layout/NavBar/NavBar";
 import { Footer } from "@/components/layout/Footer/Footer";
-import { AuthProvider } from "@/lib/auth/AuthContext";
 import "./globals.css";
 
 const inter = Inter({
@@ -25,11 +24,9 @@ export default function RootLayout({
       <body
         className={`${inter.variable} flex min-h-screen flex-col antialiased`}
       >
-        <AuthProvider>
-          <NavBar />
-          <div className="flex flex-1 flex-col">{children}</div>
-          <Footer />
-        </AuthProvider>
+        <NavBar />
+        <div className="flex flex-1 flex-col">{children}</div>
+        <Footer />
       </body>
     </html>
   );
