@@ -31,6 +31,7 @@ export default async function Home() {
             alt="Bienvenue chez Kasa, la location d'appartements entre particuliers"
             fill
             priority
+            sizes="(max-width: 1280px) 100vw, 1280px"
             className="origin-center scale-160 object-cover xl:scale-100"
           />
         </div>
