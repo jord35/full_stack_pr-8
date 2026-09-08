@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 
 /**
  * MSWProvider.
@@ -15,44 +15,39 @@ import { useEffect, useState, type ReactNode } from "react";
  * - En développement local avec le vrai backend, on ne démarre pas MSW
  *   (le proxy Next.js redirige vers localhost:3000).
  *
+ * IMPORTANT : ce composant affiche TOUJOURS ses enfants (le contenu de la page).
+ * MSW est démarré en parallèle, sans bloquer le rendu. Si le service worker
+ * MSW ne se charge pas (ex: navigateur, Lighthouse), la page s'affiche quand
+ * même — les données viennent alors des mocks côté serveur (voir api.ts).
+ *
  * Le worker est importé dynamiquement pour ne pas charger MSW inutilement
  * quand il n'est pas activé.
  */
 export function MSWProvider({ children }: { children: ReactNode }) {
-    const [ready, setReady] = useState(false);
-
     useEffect(() => {
         const useMocks = process.env.NEXT_PUBLIC_USE_MOCKS === "true";
 
         if (!useMocks) {
-            setReady(true);
             return;
         }
 
-        let cancelled = false;
-
         async function enableMocking() {
-            const { worker } = await import("@/mocks/browser");
-            await worker.start({
-                onUnhandledRequest: "bypass",
-            });
-            if (!cancelled) {
-                setReady(true);
+            try {
+                const { worker } = await import("@/mocks/browser");
+                await worker.start({
+                    onUnhandledRequest: "bypass",
+                });
+            } catch (err) {
+                // Si MSW ne peut pas démarrer (service worker indisponible),
+                // on ne bloque pas l'affichage : la page continue de fonctionner
+                // grâce aux mocks côté serveur (voir api.ts).
+                console.warn("MSW n'a pas pu démarrer:", err);
             }
         }
 
         enableMocking();
-
-        return () => {
-            cancelled = true;
-        };
     }, []);
 
-    // Tant que MSW n'est pas prêt, on n'affiche rien pour éviter
-    // que les appels API partent avant l'interception.
-    if (!ready) {
-        return null;
-    }
-
+    // On affiche toujours le contenu, sans attendre MSW.
     return <>{children}</>;
 }
