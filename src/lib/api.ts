@@ -1,4 +1,5 @@
 import type { AuthResponse, Property } from "./types";
+import mockProperties from "@/mocks/data/properties.json";
 
 /**
  * Module API — Toutes les fonctions d'appel au backend Kasa.
@@ -9,8 +10,17 @@ import type { AuthResponse, Property } from "./types";
  * - Côté client (navigateur) : URL relative, pour passer par le proxy Next.js
  *   (voir next.config.ts) qui redirige /api et /auth vers le back-end (port 3000),
  *   ce qui évite les problèmes CORS.
+ *
+ * Mode mocks (NEXT_PUBLIC_USE_MOCKS=true) :
+ * - Utilisé pour un déploiement autonome (Vercel) sans backend.
+ * - Les pages SERVEUR (accueil, logement) chargent les données au moment du rendu
+ *   serveur, AVANT que MSW (côté client) ne soit actif. On retourne donc les
+ *   données mockées directement ici, sans fetch.
  */
 const API_URL = typeof window === "undefined" ? "http://localhost:3000" : "";
+
+// Si NEXT_PUBLIC_USE_MOCKS=true, on sert les données mockées (front autonome).
+const USE_MOCKS = process.env.NEXT_PUBLIC_USE_MOCKS === "true";
 
 // ─── Helpers ─────────────────────────────────────────────
 
@@ -29,12 +39,24 @@ async function handleResponse<T>(res: Response): Promise<T> {
 
 /** Liste des propriétés : GET /api/properties */
 export async function getProperties(): Promise<Property[]> {
+    // Mode mocks : retourne les données mockées sans appel réseau
+    if (USE_MOCKS) {
+        return mockProperties as Property[];
+    }
     const res = await fetch(`${API_URL}/api/properties`);
     return handleResponse<Property[]>(res);
 }
 
 /** Détail d'une propriété : GET /api/properties/:id */
 export async function getProperty(id: string): Promise<Property> {
+    // Mode mocks : retourne le logement mocké correspondant à l'id
+    if (USE_MOCKS) {
+        const property = (mockProperties as Property[]).find((p) => p.id === id);
+        if (!property) {
+            throw new Error("Logement introuvable");
+        }
+        return property;
+    }
     const res = await fetch(`${API_URL}/api/properties/${id}`);
     return handleResponse<Property>(res);
 }

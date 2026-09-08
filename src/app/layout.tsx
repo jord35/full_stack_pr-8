@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { NavBar } from "@/components/layout/NavBar/NavBar";
 import { Footer } from "@/components/layout/Footer/Footer";
+import { MSWProvider } from "@/components/providers/MSWProvider";
 import "./globals.css";
 
 const inter = Inter({
@@ -34,9 +35,13 @@ export default function RootLayout({
       <body
         className={`${inter.variable} flex min-h-screen flex-col antialiased`}
       >
-        <NavBar />
-        <div className="flex flex-1 flex-col">{children}</div>
-        <Footer />
+        {/* MSWProvider : démarre les mocks MSW si NEXT_PUBLIC_USE_MOCKS=true
+            (déploiement autonome sans backend). Sinon, il ne fait rien. */}
+        <MSWProvider>
+          <NavBar />
+          <div className="flex flex-1 flex-col">{children}</div>
+          <Footer />
+        </MSWProvider>
       </body>
     </html>
   );
