@@ -1,0 +1,20 @@
+# ─── Protection de la branche main (production) ─────────────
+# On ne commit JAMAIS directement sur main, sauf si le message
+# de commit commence par "prod:" (déploiement volontaire).
+# Le hook commit-msg reçoit le chemin du fichier de message en $1.
+BRANCH=$(git branch --show-current)
+if [ "$BRANCH" = "main" ]; then
+  COMMIT_MSG=$(cat "$1")
+  case "$COMMIT_MSG" in
+    prod:*)
+      echo "✅ Commit sur main autorisé (message commence par 'prod:')"
+      ;;
+    *)
+      echo "❌ Commit direct sur 'main' (production) refusé !"
+      echo "   Les commits sur main doivent commencer par 'prod:'"
+      echo "   (ex: prod: deploy nouvelle version)"
+      echo "   Si tu développes, bascule sur 'develop' d'abord : git checkout develop"
+      exit 1
+      ;;
+  esac
+fi
