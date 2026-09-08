@@ -1,8 +1,38 @@
+import type { Metadata } from "next";
 import { getProperties } from "@/lib/api";
 import { ContentImage } from "@/components/ui/ContentImage/ContentImage";
 import { Header } from "@/components/ui/Header/Header";
 import { PropertyGrid } from "@/components/features/PropertyGrid/PropertyGrid";
 import { InfoCard } from "@/components/ui/InfoCard/InfoCard";
+
+// URL de base du site (même source que le sitemap)
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3001";
+
+/**
+ * Métadonnées de la page d'accueil.
+ * Définit le titre, la description et l'image Open Graph (og:image) pour que,
+ * quand on partage le lien, l'image principale de Kasa s'affiche en miniature.
+ */
+export const metadata: Metadata = {
+  title: "Kasa — Location d'appartements entre particuliers",
+  description:
+    "Avec Kasa, vivez des séjours uniques dans des hébergements chaleureux, sélectionnés avec soin par nos hôtes.",
+  openGraph: {
+    title: "Kasa — Location d'appartements entre particuliers",
+    description:
+      "Avec Kasa, vivez des séjours uniques dans des hébergements chaleureux, sélectionnés avec soin par nos hôtes.",
+    type: "website",
+    url: SITE_URL,
+    images: [
+      {
+        url: `${SITE_URL}/images/mocks/home_img.webp`,
+        width: 1200,
+        height: 630,
+        alt: "Bienvenue chez Kasa, la location d'appartements entre particuliers",
+      },
+    ],
+  },
+};
 
 export default async function Home() {
   const properties = await getProperties();
