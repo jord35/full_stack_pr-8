@@ -39,19 +39,21 @@ export default async function PropertyDetailPage({
 
     // ─── Microdonnées schema.org (JSON-LD) ─────────────────────
     // Décrit le logement pour Google (résultats enrichis).
-    // Type LodgingBusiness : hébergement de location.
+    // Type Product : mieux supporté par les rich results Google
+    // (étoiles + prix) que LodgingBusiness pour les locations.
     // aggregateRating n'est inclus QUE s'il y a au moins 1 avis réel
     // (reviewCount = 0 rendrait le bloc invalide et Google le rejetterait).
     const jsonLd = {
         "@context": "https://schema.org",
-        "@type": "LodgingBusiness",
+        "@type": "Product",
         name: property.title,
         description: property.description,
         image: property.cover,
-        priceRange: `${property.price_per_night}€`,
-        address: {
-            "@type": "PostalAddress",
-            addressLocality: property.location,
+        offers: {
+            "@type": "Offer",
+            price: property.price_per_night,
+            priceCurrency: "EUR",
+            availability: "https://schema.org/InStock",
         },
         ...(property.ratings_count > 0 && {
             aggregateRating: {
