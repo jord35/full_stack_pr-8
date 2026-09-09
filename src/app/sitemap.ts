@@ -18,7 +18,9 @@ import { getProperties } from "@/lib/api";
  * L'URL de base vient de NEXT_PUBLIC_SITE_URL (voir .env.local), avec un
  * fallback sur localhost pour le développement local.
  */
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3001";
+// URL de base du site. On retire un éventuel slash final pour éviter
+// les doubles slashes dans les URLs générées (ex: https://site.com//a-propos).
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3001").replace(/\/+$/, "");
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Pages statiques publiques indexables

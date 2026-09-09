@@ -5,8 +5,9 @@ import { Header } from "@/components/ui/Header/Header";
 import { PropertyGrid } from "@/components/features/PropertyGrid/PropertyGrid";
 import { InfoCard } from "@/components/ui/InfoCard/InfoCard";
 
-// URL de base du site (même source que le sitemap)
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3001";
+// URL de base du site (même source que le sitemap).
+// On retire un éventuel slash final pour éviter les doubles slashes.
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3001").replace(/\/+$/, "");
 
 /**
  * Métadonnées de la page d'accueil.
