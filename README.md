@@ -10,7 +10,20 @@ Kasa est une application web de réservation de logements. Le front-end consomme
 
 - **Node.js** 18+ (recommandé)
 - **npm**
-- Le **back-end** Kasa doit tourner sur `http://localhost:3000` (voir le dossier `back-end/`)
+- Le **back-end** Kasa doit tourner sur `http://localhost:3000`
+
+> ⚠️ **Le back-end n'est pas fourni dans ce dépôt.**
+> Il est fourni par OpenClassrooms dans le dépôt
+> [`OpenClassrooms-Student-Center/dev-react-P12`](https://github.com/OpenClassrooms-Student-Center/dev-react-P12).
+> Clonez-le et lancez-le **avant** ce front-end (référez-vous à son propre README
+> pour les instructions d'installation et de lancement).
+
+## Alternative sans back-end : mode MSW
+
+Ce front-end peut néanmoins tourner **sans back-end** grâce à **MSW**
+(*Mock Service Worker*), qui intercepte les requêtes réseau et renvoie des
+données simulées. Pratique pour une démonstration ou un déploiement statique
+(c'est ce mode qui est utilisé sur Vercel).
 
 ## Installation
 
