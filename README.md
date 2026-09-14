@@ -91,5 +91,35 @@ NEXT_PUBLIC_SITE_URL=http://localhost:3001
 Le projet intègre plusieurs optimisations pour le référencement :
 
 - **Sitemap** : généré automatiquement à `/sitemap.xml` (fichier [`src/app/sitemap.ts`](src/app/sitemap.ts)). Il liste les pages publiques indexables (accueil, à propos) et toutes les pages logement (`/logements/[slug]`).
-- **Microdonnées schema.org** : chaque page de logement embarque un bloc JSON-LD de type `LodgingBusiness` (titre, description, image, prix, localisation, note) pour les résultats enrichis Google.
+- **Microdonnées schema.org** : chaque page de logement embarque un bloc JSON-LD de type `Product` (avec `Offer` pour le prix et `AggregateRating` conditionnel) pour les résultats enrichis Google. Voir [`doc/metadonnees/`](doc/metadonnees/).
 - **Open Graph** : la page d'accueil définit `og:image`, `og:title` et `og:description` pour afficher un aperçu (image + description) lors du partage d'un lien.
+
+## Documentation du projet
+
+Les éléments de documentation et de preuve sont regroupés dans le dossier [`doc/`](doc/), organisé **par thème** :
+
+- **Accessibilité, performance & SEO** → [`doc/accessibilite-performance-seo/`](doc/accessibilite-performance-seo/)
+- **Métadonnées & données structurées** → [`doc/metadonnees/`](doc/metadonnees/)
+
+### Accessibilité, performance & SEO — [`doc/accessibilite-performance-seo/`](doc/accessibilite-performance-seo/)
+
+Pour chaque page de l'application sont fournis :
+
+- les rapports **Lighthouse** (*outil*) en versions **desktop** et **mobile** (PDF) ;
+- les rapports **Wave** (*outil*) pour l'accessibilité (PNG).
+
+| Page | Lighthouse desktop | Lighthouse mobile | Wave (accessibilité) |
+|------|--------------------|-------------------|----------------------|
+| Accueil | [PDF](doc/accessibilite-performance-seo/accueil/accueil-desktop-lighthouse.pdf) | [PDF](doc/accessibilite-performance-seo/accueil/accueil-mobile-lighthouse.pdf) | [PNG](doc/accessibilite-performance-seo/accueil/wave-accueil.png) |
+| À propos | [PDF](doc/accessibilite-performance-seo/a-propos/a-propos-desktop-lighthouse.pdf) | [PDF](doc/accessibilite-performance-seo/a-propos/a-propos-mobile-lighthouse.pdf) | [PNG](doc/accessibilite-performance-seo/a-propos/wave-a-propos.png) |
+| Favoris | [PDF](doc/accessibilite-performance-seo/favoris/favoris-desktop-lighthouse.pdf) | [PDF](doc/accessibilite-performance-seo/favoris/favoris-mobile-lighthouse.pdf) | [PNG](doc/accessibilite-performance-seo/favoris/wave-favoris.png) |
+| Logement | [PDF](doc/accessibilite-performance-seo/logement/logement-desktop-lighthouse.pdf) | [PDF](doc/accessibilite-performance-seo/logement/logement-mobile-lighthouse.pdf) | [PNG](doc/accessibilite-performance-seo/logement/wave-logement.png) |
+| Connexion | [PDF](doc/accessibilite-performance-seo/login/login-desktop-lighthouse.pdf) | [PDF](doc/accessibilite-performance-seo/login/login-mobile-lighthouse.pdf) | [PNG](doc/accessibilite-performance-seo/login/wave-login.png) |
+| Inscription | [PDF](doc/accessibilite-performance-seo/signup/signup-desktop-lighthouse.pdf) | [PDF](doc/accessibilite-performance-seo/signup/signup-mobile-lighthouse.pdf) | [PNG](doc/accessibilite-performance-seo/signup/wave-signup.png) |
+
+> Les rapports Lighthouse sont produits par le script [`lighthouse-reports/run-lighthouse.js`](../lighthouse-reports/run-lighthouse.js) situé à la racine du monorepo.
+
+### Métadonnées & résultats enrichis — [`doc/metadonnees/`](doc/metadonnees/)
+
+Balisage **schema.org** de type `Product` (JSON-LD) et preuves de validation
+via le **Google Rich Results Test** et le validateur schema.org.
